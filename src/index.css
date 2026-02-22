@@ -9,8 +9,9 @@
   --color-teal-light: #F0FDFA; /* Original light teal */
   --color-text-primary: #0F172A;
   --color-text-muted: #64748B;
-
-  --font-heading: 'Inter', sans-serif;
+ 
+  --font-primary: 'Source Serif 4', serif;
+  --font-heading: var(--font-primary);
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -33,11 +34,11 @@ body {
   background-color: #FFFFFF;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   line-height: 1.2;
   letter-spacing: -0.02em;
-}
+} */
 
 /* ── Reusable Component Utilities ───────────────────── */
 @layer components {
@@ -87,13 +88,13 @@ h1, h2, h3, h4, h5, h6 {
            transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
   }
   .btn-teal:hover {
-    @apply bg-primary-dark;
+    @apply bg-primary-dark text-center;
     transform: scale(1.02);
   }
 
   .btn-outline {
     @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
-           bg-transparent text-white border border-white/20
+           bg-transparent text-white text-center border border-white/20
            transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
   }
   .btn-outline:hover {
@@ -108,14 +109,15 @@ h1, h2, h3, h4, h5, h6 {
   .btn-outline-dark:hover {
     @apply bg-secondary text-white;
   }
-
-  .eyebrow {
-    @apply inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase text-primary mb-6 px-4 py-1.5 rounded-full;
-    background: rgba(13, 148, 136, 0.08);
+ 
+  .font-primary {
+    font-family: var(--font-primary);
   }
-  .eyebrow-light {
-    @apply text-accent;
-    background: rgba(103, 232, 249, 0.1);
+ 
+  .eyebrow {
+    @apply inline-block text-[0.65rem] font-bold tracking-[0.25em] uppercase text-primary mb-4 px-4 py-1.5 rounded-full;
+    background: rgba(13, 148, 136, 0.06);
+    border: 1px solid rgba(13, 148, 136, 0.1);
   }
 }
 

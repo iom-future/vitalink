@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function Banner() {
-  const [visible, setVisible] = useState(true);
-
-  if (!visible) return null;
+export default function Banner({ onClose }) {
 
   return (
     <div className="bg-primary text-white text-center py-2.5 px-6 text-sm font-medium relative z-50">
@@ -14,7 +11,7 @@ export default function Banner() {
         </a>
       </span>
       <button
-        onClick={() => setVisible(false)}
+        onClick={onClose}
         className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors text-lg cursor-pointer"
         aria-label="Dismiss banner"
       >

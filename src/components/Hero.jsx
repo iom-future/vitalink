@@ -78,45 +78,54 @@ const fadeUp = {
   }),
 };
 
-export default function Hero() {
+export default function Hero({ bannerVisible }) {
   return (
-    <section id="hero" className="relative min-h-[95vh] flex flex-col justify-center bg-secondary overflow-hidden pt-[140px] pb-10">
-      <HeroBg />
+    <section id="hero" className={`relative min-h-[95vh] flex flex-col justify-center overflow-hidden pb-10 transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
+      <div className="absolute bottom-0 left-0 right-0 top-0 z-[-2] h-screen w-screen bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+      {/* <HeroBg /> */}
 
       <div className="relative z-10 text-center px-6 max-w-[1200px] mx-auto w-full">
         <motion.span
-          className="eyebrow eyebrow-light !mb-8"
+          className="eyebrow"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={0}
         >
-          Intelligence in Every Heartbeat
+          The future of patient monitoring is here
         </motion.span>
 
         <motion.h1
-          className="text-[clamp(2.5rem,6vw,4.5rem)] text-white font-black max-w-[1000px] mx-auto mb-8 tracking-tight leading-[1.05]"
+          className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-8 tracking-tight leading-[1.05]"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}
         >
           Your Patient's Health,{' '}
-          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
+          <span className="bg-gradient-to-r !font-primary from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
             Monitored in Real Time.
           </span>
+         
         </motion.h1>
 
         <motion.p
-          className="text-white/60 text-xl md:text-2xl max-w-[720px] mx-auto mb-10 leading-relaxed font-medium"
+          className="text-secondary/70 text-base md:text-2xl max-w-[720px] mx-auto mb-4 leading-relaxed font-medium"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}
         >
-          Vitalink bridges the gap between hospital and home, connecting clinical-grade IoT with AI intelligence and secure blockchain data ownership.
+          Vitalink connects wearable IoT devices, AI-powered health analytics, and patient owned  block-chain health records into one seamless platform - giving clinicians the live insight they need and patients the privacy they deserve
+        </motion.p>
+
+    <motion.p
+          className="text-gray- font-primary text-sm md:text-lg max-w-[720px] mx-auto mb-10 leading-relaxed font-medium"
+          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}
+        >
+          HIPAA-certified, Trusted by physicians, hospital networks, and research institutions. Built  with patients - not just for them
         </motion.p>
 
         <motion.div
           className="flex flex-col sm:flex-row gap-5 justify-center mb-16"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3}
         >
-          <a href="#cta" className="btn-teal group px-10">
-            Get Started 
+          <a href="#cta" className="btn-teal justify-center group px-10">
+            Start Monitoring Now 
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </a>
-          <a href="#how-it-works" className="btn-outline group px-10">
+          <a href="#how-it-works" className="btn-outline-dark justify-center group px-10">
             <Play size={18} className="fill-current" />
             See It In Action
           </a>
@@ -127,7 +136,7 @@ export default function Hero() {
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={4}
         >
           {TRUST_BADGES.map((badge) => (
-            <span key={badge} className="flex items-center gap-2 text-white text-xs font-bold tracking-widest uppercase">
+            <span key={badge} className="flex items-center gap-2 text-secondary text-xs font-bold tracking-widest uppercase">
               <ShieldCheck size={14} className="text-primary" />
               {badge}
             </span>
@@ -137,12 +146,12 @@ export default function Hero() {
 
       {/* Stats Bar */}
       <div className="mt-auto pt-20 relative z-10 w-full">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-4 border-t border-white/5">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-2 lg:grid-cols-4 border-t border-secondary/10">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.number}
               className={`text-center py-12 px-6 ${
-                i < STATS.length - 1 ? 'border-r border-white/5' : ''
+                i < STATS.length - 1 ? 'border-r border-secondary/10' : ''
               }`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -152,7 +161,7 @@ export default function Hero() {
               <div className="font-mono text-3xl md:text-4xl font-bold text-accent mb-2">
                 {stat.number}
               </div>
-              <div className="text-white/40 text-[0.7rem] font-bold uppercase tracking-[0.2em]">{stat.label}</div>
+              <div className="text-secondary/40 text-[0.7rem] font-bold uppercase tracking-[0.2em]">{stat.label}</div>
             </motion.div>
           ))}
         </div>

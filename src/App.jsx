@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
@@ -9,11 +9,13 @@ import CtaSection from './components/CtaSection';
 import Footer from './components/Footer';
 
 function App() {
+  const [bannerVisible, setBannerVisible] = useState(true);
+
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar />
+    <div className="min-h-screen ">
+      <Navbar bannerVisible={bannerVisible} onBannerClose={() => setBannerVisible(false)} />
       <main>
-        <Hero />
+        <Hero bannerVisible={bannerVisible} />
         <Problem />
         <HowItWorks />
         <Features />
