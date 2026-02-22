@@ -56,19 +56,22 @@ export default function Problem() {
 
       {/* Problem Cards */}
       <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.title}
-              className="p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group"
+              className="p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}
             >
-              <div className="w-14 h-14 rounded-2xl bg-white border border-secondary/5 shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
-                {p.icon}
+              {/* Background Icon Effect */}
+              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                {React.cloneElement(p.icon, { size: 240, strokeWidth: 1.5 })}
               </div>
-              <h3 className="text-xl font-medium mb-4 tracking-tight">{p.title}</h3>
-              <p className="text-text-muted leading-relaxed mb-6">{p.desc}</p>
-              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+
+             
+              <h3 className="text-xl font-medium mb-4 tracking-tight relative z-10">{p.title}</h3>
+              <p className="text-text-muted leading-relaxed mb-6 relative z-10">{p.desc}</p>
+              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
                 Learn how we solve it <ArrowUpRight size={14} />
               </a>
             </motion.div>

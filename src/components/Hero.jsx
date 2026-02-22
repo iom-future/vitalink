@@ -80,8 +80,8 @@ const fadeUp = {
 
 export default function Hero({ bannerVisible }) {
   return (
-    <section id="hero" className={`relative min-h-[95vh] flex flex-col justify-center overflow-hidden pb-10 transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
-    <div className="absolute inset-0 z-1 h-full w-ful bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <section id="hero" className={`relative  min-h-[95vh] flex flex-col justify-center bg-teal-light overflow-hidden pb-10 transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
+    <div className="absolute inset-0 z-1 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       {/* <HeroBg /> */}
 
       <div className="relative z-10 text-center px-6 max-w-[1200px] mx-auto w-full">
