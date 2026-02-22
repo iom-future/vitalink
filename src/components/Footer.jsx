@@ -1,66 +1,68 @@
 import React from 'react';
+import { Twitter, Github, Linkedin, Mail, MapPin, ExternalLink } from 'lucide-react';
 
 const FOOTER_LINKS = [
   {
     title: 'Platform',
     links: [
-      { label: 'How It Works', href: '#how-it-works' },
-      { label: 'VitaSense IoT', href: '#' },
-      { label: 'VitaAI Engine', href: '#' },
-      { label: 'VitaChain Ledger', href: '#' },
-    ],
-  },
-  {
-    title: 'Solutions',
-    links: [
-      { label: 'For Patients', href: '#problem' },
-      { label: 'For Clinicians', href: '#features' },
-      { label: 'For Hospitals', href: '#' },
-      { label: 'Research Marketplace', href: '#' },
+      { name: 'VitaSense IoT', href: '#' },
+      { name: 'VitaAI Clinical', href: '#' },
+      { name: 'VitaChain Ledger', href: '#' },
+      { name: 'Clinical Portal', href: '#' },
     ],
   },
   {
     title: 'Resources',
     links: [
-      { label: 'Clinical Evidence', href: '#' },
-      { label: 'HIPAA & Security', href: '#' },
-      { label: 'Developer API', href: '#' },
-      { label: 'Pricing', href: '#' },
+      { name: 'Clinical Research', href: '#' },
+      { name: 'Whitepapers', href: '#' },
+      { name: 'Developer API', href: '#' },
+      { name: 'Security & Trust', href: '#' },
     ],
   },
   {
     title: 'Company',
     links: [
-      { label: 'About Us', href: '#' },
-      { label: 'Blog', href: '#' },
-      { label: 'Contact', href: '#' },
-      { label: 'Careers', href: '#' },
+      { name: 'About Us', href: '#' },
+      { name: 'Newsroom', href: '#' },
+      { name: 'Careers', href: '#' },
+      { name: 'Contact', href: '#' },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white/50 py-20 overflow-hidden">
+    <footer className="bg-secondary text-white pt-24 pb-12 border-t border-white/5">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="mb-20 text-center lg:text-left">
-          <a href="#" className="inline-block text-2xl font-black text-primary tracking-wide mb-6">
-            VITALINK
-          </a>
-          <p className="footer-tagline mx-auto lg:mx-0 max-w-[500px] text-lg text-white/40 italic leading-relaxed">
-            "Closing the gap between your body and your care team — every second of every day."
-          </p>
-        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
+          {/* Brand Info */}
+          <div className="lg:col-span-2">
+            <a href="#" className="text-3xl font-black tracking-tighter text-primary mb-8 block">
+              VITA<span className="text-white">LINK</span>
+            </a>
+            <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
+              The infrastructure for sovereign health. Connecting patients and clinicians via continuous, secure intelligence.
+            </p>
+            <div className="flex gap-6">
+              {[Twitter, Github, Linkedin].map((Icon, i) => (
+                <a key={i} href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:text-primary hover:border-primary/30 hover:bg-white/10 transition-all">
+                  <Icon size={20} />
+                </a>
+              ))}
+            </div>
+          </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
+          {/* Links */}
           {FOOTER_LINKS.map((group) => (
             <div key={group.title}>
-              <h4 className="text-white font-bold text-sm uppercase tracking-widest mb-6">{group.title}</h4>
-              <ul className="space-y-4">
+              <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white/20 mb-8">{group.title}</h4>
+              <ul className="space-y-4 list-none">
                 {group.links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="hover:text-accent transition-colors duration-300 text-[15px]">
-                      {link.label}
+                  <li key={link.name}>
+                    <a href={link.href} className="text-white/50 hover:text-white transition-colors text-sm font-semibold flex items-center gap-2 group">
+                      {link.name}
+                      <ExternalLink size={12} className="opacity-0 group-hover:opacity-30 transition-opacity" />
                     </a>
                   </li>
                 ))}
@@ -69,39 +71,27 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 pt-16 border-t border-white/5">
-          <div className="flex flex-col gap-1">
-            <span className="text-white/30 text-xs font-bold uppercase tracking-wider mb-2">General Inquiries</span>
-            <a href="mailto:hello@vitalink.io" className="text-white/70 hover:text-accent transition-colors">hello@vitalink.io</a>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-white/30 text-xs font-bold uppercase tracking-wider mb-2">Clinical Support</span>
-            <a href="mailto:clinical@vitalink.io" className="text-white/70 hover:text-accent transition-colors">clinical@vitalink.io</a>
-          </div>
-          <div className="flex flex-col gap-1">
-            <span className="text-white/30 text-xs font-bold uppercase tracking-wider mb-2">Headquarters</span>
-            <p className="text-white/70">+1 (650) 000-VITA | Boston, MA</p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <span className="text-white/30 text-xs font-bold uppercase tracking-wider mb-1">Stay Connected</span>
-            <div className="flex gap-4">
-              {['LinkedIn', 'Twitter', 'YouTube', 'PubMed'].map(s => (
-                <a key={s} href="#" className="text-white/60 hover:text-accent font-bold text-sm transition-colors">{s}</a>
-              ))}
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex items-center gap-2 text-white/30 text-xs font-bold uppercase tracking-widest">
+              <MapPin size={14} className="text-primary/50" />
+              Palo Alto, CA & NYC
+            </div>
+            <div className="flex items-center gap-2 text-white/30 text-xs font-bold uppercase tracking-widest">
+              <Mail size={14} className="text-primary/50" />
+              hello@vitalink.ai
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-white/5 gap-6">
-          <p className="text-sm font-medium">
-            &copy; {new Date().getFullYear()} Vitalink Inc. All rights reserved.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10">
-            {['Privacy Policy', 'Terms of Service', 'HIPAA Notice', 'Cookie Settings'].map(l => (
-              <a key={l} href="#" className="text-white/30 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
-                {l}
-              </a>
-            ))}
+          <div className="flex gap-8">
+            <a href="#" className="text-white/30 text-xs font-bold uppercase tracking-widest hover:text-white">Privacy</a>
+            <a href="#" className="text-white/30 text-xs font-bold uppercase tracking-widest hover:text-white">HIPAA Compliance</a>
+            <a href="#" className="text-white/30 text-xs font-bold uppercase tracking-widest hover:text-white">Terms</a>
+          </div>
+
+          <div className="text-white/20 text-xs font-bold uppercase tracking-widest">
+            © 2024 Vitalink Health. All rights reserved.
           </div>
         </div>
       </div>

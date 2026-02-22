@@ -5,101 +5,113 @@
   --color-primary-dark: #0b7f74;
   --color-secondary: #0F172A;
   --color-accent: #67E8F9;
-  --color-surface-light: #F0FDFA;
-  --color-surface-dark: #134E4A;
+  --color-surface-light: #F8FAFC; /* Refined very light cool grey/blue */
+  --color-teal-light: #F0FDFA; /* Original light teal */
   --color-text-primary: #0F172A;
   --color-text-muted: #64748B;
 
   --font-heading: 'Inter', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --shadow-clinical: 0 4px 20px -4px rgba(15, 23, 42, 0.05), 0 10px 40px -4px rgba(15, 23, 42, 0.03);
+  --shadow-clinical-hover: 0 10px 40px -4px rgba(15, 23, 42, 0.08), 0 20px 60px -4px rgba(15, 23, 42, 0.05);
 }
 
 /* ── Base ───────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--color-text-primary);
-  line-height: 1.6;
+  line-height: 1.5;
   overflow-x: hidden;
+  background-color: #FFFFFF;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  line-height: 1.15;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 /* ── Reusable Component Utilities ───────────────────── */
 @layer components {
   .glass-card {
-    background: rgba(255, 255, 255, 0.06);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
     padding: 40px;
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .glass-card:hover {
-    border-color: rgba(13, 148, 136, 0.4);
-    box-shadow: 0 0 40px rgba(13, 148, 136, 0.15);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.05);
     transform: translateY(-4px);
   }
 
   .glass-card-light {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(13, 148, 136, 0.1);
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(13, 148, 136, 0.05);
+    border-radius: 24px;
     padding: 36px;
-    transition: all 0.4s ease;
+    box-shadow: var(--shadow-clinical);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .glass-card-light:hover {
-    border-color: rgba(13, 148, 136, 0.35);
-    box-shadow: 0 8px 40px rgba(13, 148, 136, 0.12);
+    box-shadow: var(--shadow-clinical-hover);
     transform: translateY(-6px);
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-[0.95rem] cursor-pointer
-           bg-primary text-white border-2 border-primary
-           transition-all duration-300 ease-in-out;
-    box-shadow: 0 0 24px rgba(13, 148, 136, 0.35);
+    @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
+           bg-secondary text-white border-none
+           transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
   }
   .btn-primary:hover {
+    @apply bg-primary;
+    transform: scale(1.02);
+  }
+
+  .btn-teal {
+    @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
+           bg-primary text-white border-none
+           transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
+  }
+  .btn-teal:hover {
     @apply bg-primary-dark;
-    box-shadow: 0 0 36px rgba(13, 148, 136, 0.55);
-    transform: translateY(-2px);
+    transform: scale(1.02);
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-[0.95rem] cursor-pointer
-           bg-transparent text-white border-2 border-white/30
-           transition-all duration-300 ease-in-out;
+    @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
+           bg-transparent text-white border border-white/20
+           transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
   }
   .btn-outline:hover {
-    @apply border-accent text-accent;
-    box-shadow: 0 0 20px rgba(103, 232, 249, 0.2);
-    transform: translateY(-2px);
+    @apply bg-white text-secondary border-white;
   }
 
   .btn-outline-dark {
-    @apply inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-semibold text-[0.95rem] cursor-pointer
-           bg-transparent text-primary border-2 border-primary
-           transition-all duration-300 ease-in-out;
+    @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
+           bg-transparent text-secondary border border-secondary/10
+           transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
   }
   .btn-outline-dark:hover {
-    @apply bg-primary text-white;
-    transform: translateY(-2px);
+    @apply bg-secondary text-white;
   }
 
   .eyebrow {
-    @apply inline-block text-xs font-bold tracking-[2.5px] uppercase text-primary mb-4 px-4 py-1.5 rounded-full;
-    background: rgba(13, 148, 136, 0.1);
+    @apply inline-block text-[0.7rem] font-bold tracking-[0.2em] uppercase text-primary mb-6 px-4 py-1.5 rounded-full;
+    background: rgba(13, 148, 136, 0.08);
   }
   .eyebrow-light {
     @apply text-accent;
@@ -109,7 +121,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Keyframe Animations ────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(32px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 

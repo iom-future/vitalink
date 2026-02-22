@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import Banner from './Banner';
 
 const NAV_LINKS = [
@@ -21,28 +22,30 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-350">
+    <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500  ">
       {!scrolled && <Banner />}
       <nav
-        className={`transition-all duration-350 ${
+        className={`transition-all duration-500 py-2 ${
           scrolled
-            ? 'bg-secondary/85 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.2)]'
+            ? 'bg-white/90 backdrop-blur-xl shadow-clinical border-b border-secondary/5 py-1'
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between py-4">
+        <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between ">
           {/* Logo */}
-          <a href="#" className="text-2xl font-black text-primary tracking-wide">
-            VITALINK
+          <a href="#" className={`text-2xl font-black tracking-tight transition-colors duration-500 ${scrolled ? 'text-secondary' : 'text-white'}`}>
+            VITA<span className="text-primary">LINK</span>
           </a>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex gap-7 list-none">
+          <ul className="hidden lg:flex gap-8 list-none">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-white/75 text-sm font-medium hover:text-accent transition-colors duration-300"
+                  className={`text-sm font-semibold transition-all duration-300 ${
+                    scrolled ? 'text-secondary/70 hover:text-primary' : 'text-white/80 hover:text-white'
+                  }`}
                 >
                   {link.label}
                 </a>
@@ -51,11 +54,11 @@ export default function Navbar() {
           </ul>
 
           {/* Desktop CTAs */}
-          <div className="hidden lg:flex gap-3">
-            <a href="#cta" className="btn-primary !px-5 !py-2.5 !text-sm">
+          <div className="hidden lg:flex items-center gap-4">
+            <a href="#cta" className={`btn-primary !px-6 !py-2.5 !text-sm ${scrolled ? '' : 'bg-white !text-secondary hover:bg-white/90'}`}>
               Start Free Trial
             </a>
-            <a href="#cta" className="btn-outline !px-5 !py-2.5 !text-sm">
+            <a href="#cta" className={`btn-outline !px-6 !py-2.5 !text-sm ${scrolled ? '!border-secondary/20 !text-secondary hover:!bg-secondary hover:!text-white' : ''}`}>
               Book a Demo
             </a>
           </div>
@@ -63,34 +66,35 @@ export default function Navbar() {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-white text-2xl bg-transparent border-none cursor-pointer"
+            className={`lg:hidden bg-transparent border-none cursor-pointer transition-colors ${scrolled ? 'text-secondary' : 'text-white'}`}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="lg:hidden bg-secondary/95 backdrop-blur-xl border-t border-white/5 px-6 pb-6 animate-[fadeUp_0.3s_ease]">
-            <ul className="list-none flex flex-col gap-1 mb-6">
+          <div className="lg:hidden bg-white border-t border-secondary/5 px-6 pb-10 shadow-2xl animate-[fadeUp_0.4s_ease-out]">
+            <ul className="list-none flex flex-col gap-1 mb-8 pt-4">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-white/70 text-base font-medium hover:text-accent transition-colors border-b border-white/5"
+                    className="block py-4 text-secondary/70 text-base font-semibold border-b border-secondary/5 flex items-center justify-between"
                   >
                     {link.label}
+                    <ArrowRight size={16} className="text-primary/40" />
                   </a>
                 </li>
               ))}
             </ul>
             <div className="flex flex-col gap-3">
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-primary justify-center">
+              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-primary justify-center w-full">
                 Start Free Trial
               </a>
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-outline justify-center">
+              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-outline-dark justify-center w-full">
                 Book a Demo
               </a>
             </div>
