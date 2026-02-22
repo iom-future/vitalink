@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Stats from "./components/Stats"
 import Problem from './components/Problem';
 import HowItWorks from './components/HowItWorks';
 import Features from './components/Features';
@@ -16,6 +17,7 @@ function App() {
       <Navbar bannerVisible={bannerVisible} onBannerClose={() => setBannerVisible(false)} />
       <main className='bg-[#F8F8FA]'>
         <Hero bannerVisible={bannerVisible} />
+        <Stats />
         <Problem />
         <HowItWorks />
         <Features />
