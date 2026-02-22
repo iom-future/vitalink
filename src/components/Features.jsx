@@ -52,7 +52,7 @@ const item = {
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 lg:py-40 bg-white">
+    <section id="features" className="py-24 lg:py-40 ">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-24">
           <motion.div

@@ -34,7 +34,7 @@ const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="py-24 lg:py-40 bg-white">
+    <section id="social-proof" className="py-24 lg:py-40 ">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-24">
           <motion.div

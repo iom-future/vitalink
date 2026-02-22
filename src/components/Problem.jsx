@@ -37,7 +37,7 @@ const fadeUp = {
 
 export default function Problem() {
   return (
-    <section id="problem" className="py-24 lg:py-40 bg-white">
+    <section id="problem" className="py-24 lg:py-40 ">
       {/* Header */}
       <div className="max-w-[1200px] mx-auto px-6 mb-24">
         <motion.div 

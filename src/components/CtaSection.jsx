@@ -4,7 +4,7 @@ import { Mail, Phone, FileText, ArrowRight } from 'lucide-react';
 
 export default function CtaSection() {
   return (
-    <section id="cta" className="py-24 lg:py-40 bg-white">
+    <section id="cta" className="py-24 lg:py-40 ">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-20 items-center">
           {/* Left: Urgency / Content */}

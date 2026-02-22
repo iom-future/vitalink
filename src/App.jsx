@@ -12,9 +12,9 @@ function App() {
   const [bannerVisible, setBannerVisible] = useState(true);
 
   return (
-    <div className="min-h-screen ">
+    <div className="min-h-screen  ">
       <Navbar bannerVisible={bannerVisible} onBannerClose={() => setBannerVisible(false)} />
-      <main>
+      <main className='bg-[#F8F8FA]'>
         <Hero bannerVisible={bannerVisible} />
         <Problem />
         <HowItWorks />
