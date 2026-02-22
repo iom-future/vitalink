@@ -37,36 +37,36 @@ const fadeUp = {
 
 export default function Problem() {
   return (
-    <section id="problem" className="py-24 lg:py-40 ">
+    <section id="problem" className="py-16 md:py-24 lg:py-40 ">
       {/* Header */}
-      <div className="max-w-[1200px] mx-auto px-6 mb-24">
+      <div className="max-w-[1200px] mx-auto px-6 mb-6">
         <motion.div 
           className="text-center"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
           <span className="eyebrow">The Crisis of Reactivity</span>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold mb-8 leading-[1.1] tracking-tight">
+          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary">
             Healthcare reacts to illness.<br className="hidden md:inline" /> We exist to prevent it.
           </h2>
-          <p className="text-text-muted text-xl max-w-[800px] mx-auto leading-relaxed">
+          <p className="text-text-muted text-base max-w-[800px] mx-auto leading-relaxed">
             The gap between clinical visits is costing lives. Vitalink creates a continuous thread of care, ensuring no patient is left unmonitored.
           </p>
         </motion.div>
       </div>
 
       {/* Problem Cards */}
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.title}
-              className="p-10 rounded-[32px] border border-secondary/5 bg-surface-light/50 hover:bg-white hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group"
+              className="p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group"
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}
             >
               <div className="w-14 h-14 rounded-2xl bg-white border border-secondary/5 shadow-sm flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500">
                 {p.icon}
               </div>
-              <h3 className="text-xl font-bold mb-4 tracking-tight">{p.title}</h3>
+              <h3 className="text-xl font-medium mb-4 tracking-tight">{p.title}</h3>
               <p className="text-text-muted leading-relaxed mb-6">{p.desc}</p>
               <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
                 Learn how we solve it <ArrowUpRight size={14} />
