@@ -22,20 +22,27 @@ function Stats() {
   });
 
   useGSAP(() => {
-    const cards = gsap.utils.toArray(".stat-item");
-    cards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -20 : 20,
-        opacity: 0,
+    // Stat Items Animation (Unified Right Entry + Group Trigger)
+    gsap.fromTo(".stat-item",
+      {
+        x: 40,
+        y: 20,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1,
         duration: 1,
-        ease: "power3.out",
+        stagger: 0.1,
+        ease: "back.out(1.2)",
         scrollTrigger: {
-          trigger: card,
+          trigger: ".stat-item",
           start: "top 95%",
           toggleActions: "play none none reverse",
         }
-      });
-    });
+      }
+    );
   }, { scope: containerRef });
 
   return (
@@ -43,7 +50,7 @@ function Stats() {
       <div className="mx-auto -translate-y-8 relative w-[90%] max-w-[1200px]">
         <div 
           ref={ref} 
-          className="grid bg-black/90 backdrop-blur-2xl shadow-2xl hover:shadow-black/50 rounded-2xl grid-cols-2 lg:grid-cols-4 border border-white/10 relative overflow-hidden transition-all duration-500"
+          className="grid bg-black/90 backdrop-blur-2xl shadow-2xl hover:shadow-black/50 rounded-2xl grid-cols-2 lg:grid-cols-4 border border-white/10 relative lg:gap-8 gap-2 px-2 overflow-hidden transition-all duration-500"
         >
           {STATS.map((stat, i) => (
             <div 

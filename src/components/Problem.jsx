@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { ArrowUpRight, Activity, AlertCircle, Database } from 'lucide-react';
+import { ArrowUpRight, Calendar, Share2, ShieldAlert, Database } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Counter } from './Counter';
 import gsap from 'gsap';
@@ -10,19 +10,19 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROBLEMS = [
   {
-    icon: <AlertCircle />,
-    title: 'Snapshot Data Gaps',
-    desc: 'Traditional care depends on single measurements. But health happens between clinical visits. Vitalink captures the full story.',
+    icon: <Calendar />,
+    title: 'Monitoring Gaps Between Visits',
+    desc: 'The average patient sees their doctor fewer than 4 times a year. Chronic conditions like diabetes, heart disease, and hypertension change daily. What happens in the 361 days between visits goes completely unrecorded.',
   },
   {
-    icon: <Activity />,
-    title: 'Reactive Treatment',
-    desc: 'Waiting for symptoms means waiting for damage. Our AI identifies deterioration markers 72 hours before a crisis occurs.',
+    icon: <Share2 />,
+    title: 'Fragmented, Inaccessible Health Data',
+    desc: "A patient's health history lives across a dozen different systems — each one siloed, incompatible, and inaccessible when it matters most. No single clinician ever sees the full picture.",
   },
   {
-    icon: <Database />,
-    title: 'Data Silos & Privacy',
-    desc: 'Health records are scattered and sold. Vitalink puts patients in control with a secure, blockchain-backed health wallet.',
+    icon: <ShieldAlert />,
+    title: 'Patients Have No Ownership of Their Data',
+    desc: 'Health data is one of the most valuable assets a person generates — yet patients have zero control, zero visibility, and zero financial benefit from how it is used, shared, or sold by healthcare institutions.',
   },
 ];
 
@@ -66,21 +66,27 @@ export default function Problem() {
       }
     });
 
-    // Problem Cards Animation
-    const cards = gsap.utils.toArray(".problem-card");
-    cards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -30 : 30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+    // Problem Cards Animation (Unified Right Entry + Group Trigger)
+    gsap.fromTo(".problem-card", 
+      {
+        x: 60,
+        y: 20,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        stagger: 0.15,
+        ease: "back.out(1.2)",
         scrollTrigger: {
-          trigger: card,
+          trigger: ".problem-card",
           start: "top 85%",
           toggleActions: "play none none reverse",
         }
-      });
-    });
+      }
+    );
 
     // Pull Quote Background
     gsap.from(".pull-quote-bg", {

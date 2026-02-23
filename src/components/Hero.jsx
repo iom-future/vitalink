@@ -17,40 +17,35 @@ export default function Hero({ bannerVisible }) {
   useGSAP(() => {
     const tl = gsap.timeline();
 
-    tl.from(".hero-eyebrow", {
-      y: 10,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    })
-    .from(".hero-title", {
-      x: -30,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.6")
-    .from(".hero-description", {
-      x: 30,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.8")
-    .from(".hero-badges", {
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.6")
-    .from(".hero-btns", {
-      y: 20,
-      opacity: 0,
-      duration: 0.8,
-      ease: "power3.out"
-    }, "-=0.6")
-    .from(".hero-marquee", {
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out"
-    }, "-=0.4");
+    tl.fromTo(".hero-eyebrow", 
+      { x: 30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.8, ease: "back.out(1.2)" }
+    )
+    .fromTo(".hero-title", 
+      { x: 60, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: "back.out(1.2)" },
+      "-=0.5"
+    )
+    .fromTo(".hero-description", 
+      { x: 40, opacity: 0 },
+      { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
+      "-=0.7"
+    )
+    .fromTo(".hero-badges", 
+      { opacity: 0, scale: 0.95 },
+      { opacity: 1, scale: 1, duration: 1, ease: "power3.out" },
+      "-=0.8"
+    )
+    .fromTo(".hero-btns", 
+      { x: 30, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.4)" },
+      "-=0.6"
+    )
+    .fromTo(".hero-marquee", 
+      { opacity: 0 },
+      { opacity: 1, duration: 1, ease: "power2.out" },
+      "-=0.4"
+    );
   }, { scope: containerRef });
 
   return (
@@ -60,7 +55,7 @@ export default function Hero({ bannerVisible }) {
       </div>
 
       <div className="relative z-10 text-center px-6 max-w-[1200px] mx-auto w-full">
-        <span className="hero-eyebrow eyebrow block">
+        <span className="hero-eyebrow eyebrow ">
           The future of patient monitoring is here
         </span>
 
@@ -82,11 +77,11 @@ export default function Hero({ bannerVisible }) {
         </p>
 
         <div className="hero-btns flex flex-col sm:flex-row gap-5 justify-center mb-6">
-          <Link to="/pricing" className="btn-teal justify-center group px-10">
+          <Link to="/pricing" className="btn-teal sm:w-[40%] lg:w-[30%] justify-center group px-10">
             Start Monitoring Now 
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-          <Link to="/how-it-works" className="btn-outline-dark justify-center px-10">
+          <Link to="/how-it-works" className="btn-outline-dark sm:w-[40%] lg:w-[30%] justify-center group px-10">
             <Play size={18} className="fill-current" />
             See It In Action
           </Link>

@@ -10,29 +10,23 @@ export default function CtaSection() {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(".cta-content", {
-      x: -30,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cta-content",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
+    // CTA Content and Form (Unified Right Entry + Group Trigger)
+    gsap.fromTo([".cta-content", ".cta-form"], 
+      { x: 60, y: 20, opacity: 0 },
+      { 
+        x: 0, 
+        y: 0, 
+        opacity: 1, 
+        duration: 1.2, 
+        stagger: 0.2,
+        ease: "back.out(1.2)",
+        scrollTrigger: {
+          trigger: ".cta-content", // Unified trigger
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
       }
-    });
-
-    gsap.from(".cta-form", {
-      x: 30,
-      opacity: 0,
-      duration: 1.2,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".cta-form",
-        start: "top 85%",
-        toggleActions: "play none none reverse",
-      }
-    });
+    );
   }, { scope: containerRef });
 
   return (

@@ -117,21 +117,27 @@ export default function HowItWorks() {
       }
     });
 
-    // Grid Step Cards Animation
-    const cards = gsap.utils.toArray(".step-card");
-    cards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -30 : 30,
-        opacity: 0,
+    // Grid Step Cards Animation (Unified Right Entry + Group Trigger)
+    gsap.fromTo(".step-card",
+      {
+        x: 60,
+        y: 20,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1,
         duration: 1,
-        ease: "power3.out",
+        stagger: 0.15,
+        ease: "back.out(1.2)",
         scrollTrigger: {
-          trigger: card,
+          trigger: ".step-card",
           start: "top 85%",
           toggleActions: "play none none reverse",
         }
-      });
-    });
+      }
+    );
 
     // Convergence Icons Animation
     const icons = gsap.utils.toArray(".convergence-icon");
@@ -151,12 +157,12 @@ export default function HowItWorks() {
       });
     });
 
-    // Convergence Tagline
+    // Convergence Tagline (Apex Style)
     gsap.from(".convergence-tagline", {
       y: 20,
       opacity: 0,
-      duration: 1,
-      ease: "power3.out",
+      duration: 1.2,
+      ease: "back.out(1.2)",
       scrollTrigger: {
         trigger: ".convergence-tagline",
         start: "top 90%",

@@ -56,21 +56,27 @@ export default function Features() {
       }
     });
 
-    // Feature Cards Animation
-    const cards = gsap.utils.toArray(".feature-card");
-    cards.forEach((card, i) => {
-      gsap.from(card, {
-        x: i % 2 === 0 ? -30 : 30,
-        opacity: 0,
+    // Feature Cards Animation (Unified Right Entry + Group Trigger)
+    gsap.fromTo(".feature-card",
+      {
+        x: 60,
+        y: 20,
+        opacity: 0
+      },
+      {
+        x: 0,
+        y: 0,
+        opacity: 1,
         duration: 1,
-        ease: "power3.out",
+        stagger: 0.1,
+        ease: "back.out(1.2)",
         scrollTrigger: {
-          trigger: card,
+          trigger: ".feature-card",
           start: "top 85%",
           toggleActions: "play none none reverse",
         }
-      });
-    });
+      }
+    );
   }, { scope: containerRef });
 
   return (
