@@ -1,123 +1,183 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Watch, Brain, Link, LayoutDashboard, ChevronRight } from 'lucide-react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { Watch, Brain, Link, LayoutDashboard, ChevronLeft, ChevronRight, Hand } from 'lucide-react';
 
-const TABS = [
+const STEPS = [
   {
     id: 'vitasense',
-    title: 'VitaSense',
-    label: 'IoT Sensors',
-    subtitle: 'Health Data That Never Sleeps.',
+    eyebrow: 'VitaSense Wearables',
+    title: 'Health Data That Never Sleeps.',
     icon: <Watch size={32} />,
-    description: 'Our proprietary medical-grade sensors capture high-fidelity cardiac, respiratory, and metabolic data 24/7. Clinical-grade accuracy in a consumer-friendly form factor ensures patients stay compliant and clinicians stay informed.',
+    bgColor: 'bg-emerald-100',
+    iconColor: 'text-emerald-500',
+    dotColor: 'bg-emerald-500',
+    description: 'Our network of FDA-ready IoT wearables — glucose monitors, cardiac patches, blood pressure sensors, and smart rings — streams continuous biometric data 24 hours a day, 7 days a week. No buttons to press. No readings to log. Just a constant, unbroken picture of how your body is actually doing.',
   },
   {
     id: 'vitaai',
-    title: 'VitaAI',
-    label: 'Clinical Intelligence',
-    subtitle: 'Your Personal Health AI.',
+    eyebrow: 'VitaAI Clinical Intelligence',
+    title: 'Your Personal Health AI. Working Every Second You Breathe.',
     icon: <Brain size={32} />,
-    description: 'Transform raw data into life-saving insights. Our AI engine identifies subtle physiological changes up to 72 hours before a critical event occurs, alerting care teams with actionable risk scores and trend analysis.',
+    bgColor: 'bg-blue-100',
+    iconColor: 'text-blue-500',
+    dotColor: 'bg-blue-500',
+    description: "Vitalink's AI engine analyses thousands of biometric data points in real time, detecting subtle shifts in health patterns that precede clinical events. When a concern is identified, the right clinician is alerted immediately — with a full contextual summary and a recommended course of action. Faster decisions. Better outcomes.",
   },
   {
     id: 'vitachain',
-    title: 'VitaChain',
-    label: 'Blockchain Ledger',
-    subtitle: 'Your Health History. Owned By You.',
+    eyebrow: 'VitaChain Health Record',
+    title: 'Your Health History. Owned By You — Not a Hospital.',
     icon: <Link size={32} />,
-    description: 'Built on a decentralized ledger, VitaChain ensures your health data is immutable, private, and portable. Patients gain micro-payments for contributing anonymized data to global research, turning health into a sovereign asset.',
+    bgColor: 'bg-violet-100',
+    iconColor: 'text-violet-500',
+    dotColor: 'bg-violet-500',
+    description: 'Every reading, every alert, every clinical note is stored in a patient-owned blockchain health wallet — encrypted, immutable, and fully under your control. Share access with any clinician in seconds. Revoke it just as fast. And for the first time, receive micro-payments when your anonymized data contributes to medical research — because your health story has value, and you should benefit from it.',
   },
   {
     id: 'vitadash',
-    title: 'VitaDash',
-    label: 'Clinical Portal',
-    subtitle: 'Every Patient. One Unified View.',
+    eyebrow: 'VitaDash Clinical Portal',
+    title: 'Every Patient. Every Reading. One Unified View.',
     icon: <LayoutDashboard size={32} />,
-    description: 'One dashboard for your entire patient population. Seamless FHIR integration with Epic, Cerner, and Athenahealth means monitoring data lives where you work, reducing burnout and improving outcomes.',
+    bgColor: 'bg-cyan-100',
+    iconColor: 'text-cyan-500',
+    dotColor: 'bg-cyan-500',
+    description: 'Clinicians and care teams access a live dashboard showing real-time patient vitals, AI-generated risk scores, trend analysis, and smart alert queues — prioritized by urgency so the most critical patients always rise to the top. Integrates directly with existing EHR systems via FHIR-compliant APIs. No workflow disruption. Just better information.',
   },
 ];
 
+function StepCard({ step, isCarousel = false }) {
+  const cardRef = useRef(null);
+  const { scrollXProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "center center", "end start"]
+  });
+
+  // Center-pop: Only scale up the focused card
+  const scale = useTransform(scrollXProgress, [0, 0.5, 1], [1, 1.05, 1]);
+
+  const CardContent = (
+    <div className={`${step.bgColor} rounded-[40px] p-6 md:p-10 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full -mr-20 -mt-20 blur-3xl transition-opacity group-hover:opacity-100 opacity-60"></div>
+      
+      {/* Background Icon Effect - Moved to Top Right & More Visible */}
+      <div className={`absolute -top-10 -right-10 ${step.iconColor} opacity-[0.1] group-hover:opacity-[0.15] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none`}>
+        {React.cloneElement(step.icon, { size: 240, strokeWidth: 1 })}
+      </div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="text-[0.65rem] font-bold tracking-[0.25em] uppercase text-secondary/60 mb-3">
+          {step.eyebrow}
+        </div>
+        <h3 className="text-2xl font-bold mb-4 tracking-tight text-secondary font-primary leading-tight">
+          {step.title}
+        </h3>
+        <p className="text-secondary/80 text-base leading-relaxed mt-auto">
+          {step.description}
+        </p>
+      </div>
+    </div>
+  );
+
+  if (isCarousel) {
+    return (
+      <motion.div
+        ref={cardRef}
+        style={{ scale }}
+        className="min-w-full snap-center py-6 px-6"
+      >
+        {CardContent}
+      </motion.div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="h-full"
+    >
+      {CardContent}
+    </motion.div>
+  );
+}
+
 export default function HowItWorks() {
-  const [activeTab, setActiveTab] = useState(TABS[0]);
+  const containerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleScroll = (e) => {
+    if (!containerRef.current) return;
+    const scrollPosition = e.target.scrollLeft;
+    const cardWidth = e.target.offsetWidth;
+    const index = Math.round(scrollPosition / cardWidth);
+    if (index !== activeIndex) {
+      setActiveIndex(index);
+    }
+  };
 
   return (
     <section id="how-it-works" className="py-16 md:py-24 lg:py-40 bg-teal-light/30 overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-20">
+      <div className="max-w-[1240px] mx-auto ">
+        <div className="text-center mb-16 lg:mb-24 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <span className="eyebrow">How Vitalink Works</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary">
-          Continuous Care. Complete Transparency. Total Control.
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary px-6">
+              Continuous Care. Complete Transparency. Total Control.
             </h2>
-            <p className="text-text-muted text-base max-w-[700px] mx-auto leading-relaxed">
-         Vitalink is built on three layers that work together seamlessly — IoT wearables that capture health data around the
-clock, AI models that turn raw readings into meaningful clinical insight, and a patient-owned blockchain health record
-that keeps data secure, private, and always accessible. Together, they create a system where care never stops — even
-when the appointment does.
+            <p className="text-text-muted text-base max-w-[750px] mx-auto leading-relaxed">
+              Vitalink is built on three layers that work together seamlessly — IoT wearables that capture health data around the
+              clock, AI models that turn raw readings into meaningful clinical insight, and a patient-owned blockchain health record
+              that keeps data secure, private, and always accessible.
             </p>
           </motion.div>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-          {/* Vertical Tab Navigation */}
-          <div className="w-full lg:w-[350px] flex flex-col gap-3">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab)}
-                className={`group text-left p-6 rounded-[24px] transition-all duration-400 border flex items-center justify-between ${
-                  activeTab.id === tab.id
-                    ? 'bg-white border-primary/20 shadow-clinical-hover translate-x-2'
-                    : 'bg-transparent border-transparent text-text-muted hover:bg-white/50 hover:translate-x-1'
-                }`}
-              >
-                <div>
-                  <div className={`text-sm font-bold tracking-widest uppercase mb-1 transition-colors ${activeTab.id === tab.id ? 'text-primary' : 'text-text-muted'}`}>
-                    {tab.title}
-                  </div>
-                  <div className={`font-bold text-lg tracking-tight font-primary ${activeTab.id === tab.id ? 'text-secondary' : 'text-text-muted/60'}`}>
-                    {tab.label}
-                  </div>
-                </div>
-                <ChevronRight size={18} className={`transition-all ${activeTab.id === tab.id ? 'text-primary' : 'text-text-muted/20 opacity-0 group-hover:opacity-100'}`} />
-              </button>
-            ))}
+        {/* Carousel for < lg */}
+        <div className="lg:hidden relative">
+          {/* Dots Indicator at the Top */}
+          <div className="flex flex-col items-center mb-8">
+            <div className="flex justify-center gap-3 mb-3">
+              {STEPS.map((step, index) => (
+                <div 
+                  key={step.id}
+                  className={`h-1.5 rounded-full transition-all duration-500 ${
+                    activeIndex === index 
+                      ? `w-8 ${step.dotColor}` 
+                      : 'w-2 bg-secondary/10'
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] text-secondary/40">
+              Swipe to explore
+            </span>
           </div>
 
-          {/* Tab Content */}
-          <div className="flex-1 min-h-[500px] w-full">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTab.id}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white rounded-[40px] p-10 md:p-16 shadow-clinical h-full border border-secondary/5 relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20 blur-3xl"></div>
-                <div className="relative z-10">
-                  <div className="w-20 h-20 rounded-3xl bg-surface-light flex items-center justify-center text-primary mb-10 shadow-sm">
-                    {activeTab.icon}
-                  </div>
-                  <h3 className="text-3xl font-bold mb-4 tracking-tight text-secondary">
-                    {activeTab.title}: {activeTab.label}
-                  </h3>
-                  <p className="text-primary font-bold text-xl mb-8 flex items-center gap-3">
-                    <span className="w-8 h-[2px] bg-primary/20"></span>
-                    {activeTab.subtitle}
-                  </p>
-                  <p className="text-text-muted text-xl leading-relaxed max-w-[600px]">
-                    {activeTab.description}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          <div 
+            ref={containerRef}
+            onScroll={handleScroll}
+            className="flex overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none' 
+            }}
+          >
+            {STEPS.map((step) => (
+              <StepCard key={step.id} step={step} isCarousel={true} />
+            ))}
           </div>
+        </div>
+
+        {/* Grid for lg+ */}
+        <div className="hidden lg:grid grid-cols-2 gap-8 lg:gap-12 px-6">
+          {STEPS.map((step) => (
+            <StepCard key={step.id} step={step} />
+          ))}
         </div>
 
         {/* Convergence Banner */}
