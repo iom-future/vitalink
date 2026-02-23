@@ -16,59 +16,6 @@ const TRUST_BADGES = [
   'ISO 27001',
 ];
 
-/* Animated gradient mesh background */
-function HeroBg() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let animId;
-    let t = 0;
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const draw = () => {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
-      ctx.clearRect(0, 0, w, h);
-
-      // Subtler orbs for Apple aesthetic
-      const orbs = [
-        { x: w * 0.2 + Math.sin(t * 0.2) * 100, y: h * 0.3 + Math.cos(t * 0.15) * 80, r: 400, color: 'rgba(13,148,136,0.1)' },
-        { x: w * 0.8 + Math.cos(t * 0.1) * 120, y: h * 0.7 + Math.sin(t * 0.25) * 60, r: 350, color: 'rgba(103,232,249,0.06)' },
-        { x: w * 0.5 + Math.sin(t * 0.3) * 80, y: h * 0.2 + Math.cos(t * 0.1) * 50, r: 300, color: 'rgba(13,148,136,0.04)' },
-      ];
-
-      for (const orb of orbs) {
-        const grad = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
-        grad.addColorStop(0, orb.color);
-        grad.addColorStop(1, 'transparent');
-        ctx.fillStyle = grad;
-        ctx.fillRect(0, 0, w, h);
-      }
-
-      t += 0.005;
-      animId = requestAnimationFrame(draw);
-    };
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />;
-}
-
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 0) => ({ 
@@ -78,11 +25,16 @@ const fadeUp = {
   }),
 };
 
+import Threads from './Threads';
+
 export default function Hero({ bannerVisible }) {
   return (
-    <section id="hero" className={`relative  min-h-[95vh] flex flex-col justify-center bg-teal-light overflow-hidden pb-10 transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
-    <div className="absolute inset-0 z-1 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
-      {/* <HeroBg /> */}
+    <section id="hero" className={`relative min-h-[95vh] flex flex-col justify-center overflow-hidden pb-10 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
+      <div className="absolute inset-0 pointer-events-none opacity-60">
+      
+        {/* Soft bottom fade to blend with next section */}
+        <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/90 pointer-events-none" />
+      </div>
 
       <div className="relative z-10 text-center px-6 max-w-[1200px] mx-auto w-full">
         <motion.span
