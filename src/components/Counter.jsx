@@ -1,27 +1,35 @@
-import React, { useEffect } from 'react'
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 
 export function Counter({ value, decimals = 0, prefix = '', suffix = '', inView, duration = 2 }) {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, (latest) => {
-    const formatted = latest.toLocaleString(undefined, {
-      minimumFractionDigits: decimals,
-      maximumFractionDigits: decimals,
-    });
-    return `${prefix}${formatted}${suffix}`;
-  });
+  const spanRef = useRef(null);
+  const countObj = useRef({ val: 0 });
 
   useEffect(() => {
     if (inView) {
-      const controls = animate(count, value, {
+      gsap.to(countObj.current, {
+        val: value,
         duration: duration,
-        ease: "easeOut",
+        ease: "power2.out",
+        onUpdate: () => {
+          if (spanRef.current) {
+            spanRef.current.innerText = `${prefix}${countObj.current.val.toLocaleString(undefined, {
+              minimumFractionDigits: decimals,
+              maximumFractionDigits: decimals,
+            })}${suffix}`;
+          }
+        },
       });
-      return controls.stop;
     } else {
-      count.set(0);
+      countObj.current.val = 0;
+      if (spanRef.current) {
+        spanRef.current.innerText = `${prefix}${(0).toLocaleString(undefined, {
+          minimumFractionDigits: decimals,
+          maximumFractionDigits: decimals,
+        })}${suffix}`;
+      }
     }
-  }, [inView, value, count, duration]);
+  }, [inView, value, decimals, prefix, suffix, duration]);
 
-  return <motion.span>{rounded}</motion.span>;
+  return <span ref={spanRef}></span>;
 }

@@ -1,8 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
 import { Quote } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { Counter } from './Counter';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const PROOF_STATS = [
   { number: 94, suffix: '%', label: 'AI early warning accuracy rate' },
@@ -34,60 +38,78 @@ const TESTIMONIALS = [
 
 const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
-const slideIn = (direction = 'left', i = 0) => ({
-  hidden: { 
-    opacity: 0, 
-    x: direction === 'left' ? -25 : 25 
-  },
-  visible: { 
-    opacity: 1, 
-    x: 0,
-    transition: { 
-      delay: i * 0.1, 
-      duration: 0.8, 
-      ease: [0.22, 1, 0.36, 1] 
-    } 
-  },
-});
-
 export default function SocialProof() {
-  const { ref: statsRef, inView: statsInView } = useInView({
+  const containerRef = useRef(null);
+  const { ref: statsInViewRef, inView: statsInView } = useInView({
     triggerOnce: true,
     threshold: 0.2,
   });
 
+  useGSAP(() => {
+    // Header Animation
+    gsap.from(".proof-header", {
+      y: 30,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".proof-header",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // Stats Cards Animation
+    const stats = gsap.utils.toArray(".stat-card");
+    stats.forEach((stat, i) => {
+      gsap.from(stat, {
+        x: i % 2 === 0 ? -30 : 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: stat,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
+      });
+    });
+
+    // Testimonials Animation
+    const testimonials = gsap.utils.toArray(".testimonial-card");
+    testimonials.forEach((card, i) => {
+      gsap.from(card, {
+        x: i % 2 === 0 ? -30 : 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="social-proof" className="py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section id="social-proof" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-10 lg:mb-16 px-4">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0, y: 30 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
-            }}
-          >
-            <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
-              Medicine Changes When You Can See What's Really Happening.
-            </h2>
-            <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
-              Early access clinicians, patients, and hospital systems share what continuous monitoring with Vitalink has meant for them — and their patients.
-            </p>
-          </motion.div>
+        <div className="proof-header text-center mb-10 lg:mb-16 px-4">
+          <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>
+          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+            Medicine Changes When You Can See What's Really Happening.
+          </h2>
+          <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
+            Early access clinicians, patients, and hospital systems share what continuous monitoring with Vitalink has meant for them — and their patients.
+          </p>
         </div>
 
-        <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-20">
+        <div ref={statsInViewRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-20">
           {PROOF_STATS.map((stat, i) => (
-            <motion.div 
+            <div 
               key={i}
-              className="p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
+              className="stat-card p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
               
@@ -103,20 +125,16 @@ export default function SocialProof() {
                 </div>
                 <div className="text-secondary/60 text-[0.65rem] font-black uppercase tracking-[0.2em]">{stat.label}</div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Testimonials */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8 md:mb-16">
           {TESTIMONIALS.map((t, i) => (
-            <motion.div
+            <div
               key={i}
-              className="flex flex-col items-start p-2"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
+              className="testimonial-card flex flex-col items-start p-2"
             >
               <div className="mb-10 p-4 rounded-2xl bg-primary/5 text-primary">
                 <Quote size={20} className="fill-current opacity-20" />
@@ -129,7 +147,7 @@ export default function SocialProof() {
                 <span className="text-primary font-bold text-sm tracking-tight mb-1">{t.role}</span>
                 <span className="text-text-muted text-xs font-bold uppercase tracking-widest leading-none">{t.org}</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

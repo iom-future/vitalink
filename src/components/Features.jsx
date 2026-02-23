@@ -1,6 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
 import { Activity, Zap, Shield, Database, LayoutDashboard, LineChart } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const FEATURES = [
   {
@@ -35,51 +39,58 @@ const FEATURES = [
   },
 ];
 
-const slideIn = (direction = 'left', i = 0) => ({
-  hidden: { 
-    opacity: 0, 
-    x: direction === 'left' ? -25 : 25 
-  },
-  show: { 
-    opacity: 1, 
-    x: 0,
-    transition: { 
-      delay: i * 0.1, 
-      duration: 0.8, 
-      ease: [0.22, 1, 0.36, 1] 
-    } 
-  },
-});
-
 export default function Features() {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    // Header Animation
+    gsap.from(".features-header", {
+      y: 30,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".features-header",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    // Feature Cards Animation
+    const cards = gsap.utils.toArray(".feature-card");
+    cards.forEach((card, i) => {
+      gsap.from(card, {
+        x: i % 2 === 0 ? -30 : 30,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse",
+        }
+      });
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="features" className="py-16 md:py-24 lg:py-32 ">
+    <section id="features" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-10 lg:mb-16 px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="eyebrow">WHAT VITALINK DOES FOR YOU</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
-              Every Feature Designed With One Question in Mind: <br className="hidden md:block" /> Is the Patient Safe Right Now?
-            </h2>
-            <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
-              From the biometric reading on a patient's wrist to the alert on a clinician's screen — every capability in Vitalink exists to close the gap between what is happening inside the body and the care that responds to it.
-            </p>
-          </motion.div>
+        <div className="features-header text-center mb-10 lg:mb-16 px-4">
+          <span className="eyebrow">WHAT VITALINK DOES FOR YOU</span>
+          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+            Every Feature Designed With One Question in Mind: <br className="hidden md:block" /> Is the Patient Safe Right Now?
+          </h2>
+          <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
+            From the biometric reading on a patient's wrist to the alert on a clinician's screen — every capability in Vitalink exists to close the gap between what is happening inside the body and the care that responds to it.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {FEATURES.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              variants={slideIn(index % 2 === 0 ? 'left' : 'right', index)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-              className="p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
+              className="feature-card p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
             >
               {/* Background Icon Effect */}
               <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
@@ -99,7 +110,7 @@ export default function Features() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

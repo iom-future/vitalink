@@ -1,10 +1,42 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Phone, FileText, ArrowRight, PlayCircle, Download, User } from 'lucide-react';
+import React, { useRef } from 'react';
+import { Mail, Phone, ArrowRight, PlayCircle, Download, User } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function CtaSection() {
+  const containerRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".cta-content", {
+      x: -30,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".cta-content",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+
+    gsap.from(".cta-form", {
+      x: 30,
+      opacity: 0,
+      duration: 1.2,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".cta-form",
+        start: "top 85%",
+        toggleActions: "play none none reverse",
+      }
+    });
+  }, { scope: containerRef });
+
   return (
-    <section id="cta" className="py-16 md:py-24 relative">
+    <section id="cta" ref={containerRef} className="py-16 md:py-24 relative overflow-hidden">
       {/* Urgency Banner */}
       <div className="bg-primary py-3 mb-8 sm:mb-12">
         <div className="max-w-[1200px] mx-auto px-6">
@@ -17,46 +49,33 @@ export default function CtaSection() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Left: Content */}
-          <div className="flex-1 text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
-                  Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
-                </h2>
-                <p className="text-text-muted text-base md:text-lg mb-12 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
-                  Whether you are a clinician, hospital network, or patient — Vitalink was built for you. Setup takes less than 24 hours. The first early warning could come within days.
-                </p>
+          <div className="cta-content flex-1 text-center lg:text-left">
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+              Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
+            </h2>
+            <p className="text-text-muted text-base md:text-lg mb-12 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
+              Whether you are a clinician, hospital network, or patient — Vitalink was built for you. Setup takes less than 24 hours. The first early warning could come within days.
+            </p>
 
-                <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-16">
-                  <div className="flex items-center gap-3 text-secondary font-bold">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                      <Mail size={18} />
-                    </div>
-                    hello@vitalink.io
-                  </div>
-                  <div className="flex items-center gap-3 text-secondary font-bold">
-                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                      <Phone size={18} />
-                    </div>
-                    +1 (650) 000-VITA
-                  </div>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-16">
+              <div className="flex items-center gap-3 text-secondary font-bold">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                  <Mail size={18} />
                 </div>
-              </motion.div>
+                hello@vitalink.io
+              </div>
+              <div className="flex items-center gap-3 text-secondary font-bold">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                  <Phone size={18} />
+                </div>
+                +1 (650) 000-VITA
+              </div>
             </div>
+          </div>
 
-            {/* Right: Modern Form Card */}
-            <div className="flex-1 w-full max-w-[550px]">
-              <motion.div
-                className="glass-card-light p-8 md:p-10 relative overflow-hidden"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-              >
+          {/* Right: Modern Form Card */}
+          <div className="flex-1 w-full max-w-[550px]">
+            <div className="cta-form glass-card-light p-8 md:p-10 relative overflow-hidden">
               <h3 className="text-2xl font-bold mb-8 tracking-tight">Request Your Free Clinical Demo</h3>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -88,7 +107,7 @@ export default function CtaSection() {
                   HIPAA-compliant. Your data is never sold or shared without consent. <br /> No credit card required. Cancel any time.
                 </p>
               </form>
-            </motion.div>
+            </div>
 
             {/* Secondary CTA Links */}
             <div className="mt-12 flex flex-col gap-5 px-4">
