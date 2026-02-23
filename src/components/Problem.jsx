@@ -37,9 +37,9 @@ const fadeUp = {
 
 export default function Problem() {
   return (
-    <section id="problem" className="py-20 md:py-32 lg:py-48 ">
+    <section id="problem" className="py-16 md:py-24 lg:py-32 ">
       {/* Header */}
-      <div className="max-w-[1200px] mx-auto px-6 mb-12">
+      <div className="max-w-[1200px] mx-auto px-6 mb-10">
         <motion.div 
           className="text-center"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
@@ -48,7 +48,7 @@ export default function Problem() {
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
             Healthcare reacts to illness.<br className="hidden md:inline" /> We exist to prevent it.
           </h2>
-          <p className="text-text-muted text-lg md:text-xl max-w-[850px] mx-auto leading-relaxed">
+          <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
            Every year, millions of preventable hospital admissions occur because warning signs went undetected between clinical
 visits. Patients leave appointments with no continuous oversight. Clinicians rely on snapshot data — a blood pressure
 reading, a single ECG — to make decisions about conditions that evolve over days and weeks. The system wasn't
@@ -59,11 +59,11 @@ designed for continuous care. Vitalink is.
 
       {/* Problem Cards */}
       <div className="max-w-[1200px] mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 md:mb-20">
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.title}
-              className="p-12 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(239,68,68,0.1)_0,rgba(239,68,68,0)_50%,rgba(239,68,68,0)_100%)] hover:border-red-500/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
+              className="p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(239,68,68,0.1)_0,rgba(239,68,68,0)_50%,rgba(239,68,68,0)_100%)] hover:border-red-500/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}
             >
               {/* Background Icon Effect */}
@@ -83,7 +83,7 @@ designed for continuous care. Vitalink is.
 
         {/* Pull Quote - STAYS DARK */}
         <motion.div
-          className="bg-black/95 backdrop-blur-2xl shadow-2xl rounded-2xl py-20 px-10 md:px-24 text-white border border-white/10 relative overflow-hidden"
+          className="bg-black/95 backdrop-blur-2xl shadow-2xl rounded-2xl py-12 md:py-16 px-10 md:px-24 text-white border border-white/10 relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}

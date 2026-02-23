@@ -29,7 +29,7 @@ import Threads from './Threads';
 
 export default function Hero({ bannerVisible }) {
   return (
-    <section id="hero" className={`relative min-h-[95vh] flex flex-col justify-center overflow-hidden pb-10 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[150px]' : 'pt-[90px]'}`}>
+    <section id="hero" className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[130px]' : 'pt-[80px]'}`}>
       <div className="absolute inset-0 pointer-events-none opacity-60">
       
         {/* Soft bottom fade to blend with next section */}
@@ -45,7 +45,7 @@ export default function Hero({ bannerVisible }) {
         </motion.span>
 
         <motion.h1
-          className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-10 tracking-tight leading-[1.05]"
+          className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-6 tracking-tight leading-[1.05]"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}
         >
           Your Patient's Health, <br className="hidden sm:block" />
@@ -56,21 +56,21 @@ export default function Hero({ bannerVisible }) {
         </motion.h1>
 
         <motion.p
-          className="text-secondary/80 text-lg md:text-2xl max-w-[800px] mx-auto mb-8 leading-relaxed font-medium"
+          className="text-secondary/80 text-lg md:text-2xl max-w-[800px] mx-auto mb-6 leading-relaxed font-medium"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}
         >
           Vitalink connects wearable IoT devices, AI-powered health analytics, and patient-owned blockchain health records into one seamless platform — giving clinicians the live insight they need and patients the privacy they deserve.
         </motion.p>
 
         <motion.p
-          className="text-secondary/50 text-[0.85rem] md:text-[1rem] max-w-[850px] mx-auto mb-12 leading-relaxed italic"
+          className="text-secondary/50 text-[0.85rem] md:text-[1rem] max-w-[850px] mx-auto mb-8 leading-relaxed italic"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2.5}
         >
           HIPAA-certified • Trusted by physicians, hospital networks, and research institutions • Built with patients — not just for them
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-5 justify-center mb-8"
+          className="flex flex-col sm:flex-row gap-5 justify-center mb-6"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3}
         >
           <a href="#cta" className="btn-teal justify-center group px-10">

@@ -57,7 +57,7 @@ function StepCard({ step, isCarousel = false }) {
   const scale = useTransform(scrollXProgress, [0, 0.5, 1], [1, 1.05, 1]);
 
   const CardContent = (
-    <div className={`${step.bgColor} rounded-2xl p-8 md:p-12 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
+    <div className={`${step.bgColor} rounded-2xl p-6 md:p-10 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full -mr-20 -mt-20 blur-3xl transition-opacity group-hover:opacity-100 opacity-60"></div>
       
       {/* Background Icon Effect - Moved to Top Right & More Visible */}
@@ -118,9 +118,9 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-20 md:py-32 lg:py-48 bg-teal-light/30 overflow-hidden">
+    <section id="how-it-works" className="py-16 md:py-24 lg:py-32 bg-teal-light/30 overflow-hidden">
       <div className="max-w-[1240px] mx-auto ">
-        <div className="text-center mb-16 lg:mb-32 px-4">
+        <div className="text-center mb-10 lg:mb-16 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -130,7 +130,7 @@ export default function HowItWorks() {
             <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight px-6 text-secondary">
               Continuous Care. <br className="sm:hidden" /> Complete Transparency. <br className="sm:hidden" /> Total Control.
             </h2>
-            <p className="text-text-muted text-lg md:text-xl max-w-[800px] mx-auto leading-relaxed">
+            <p className="text-text-muted text-base md:text-lg max-w-[800px] mx-auto leading-relaxed">
               Vitalink is built on three layers that work together seamlessly — IoT wearables that capture health data around the
               clock, AI models that turn raw readings into meaningful clinical insight, and a patient-owned blockchain health record
               that keeps data secure, private, and always accessible.
@@ -182,7 +182,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Convergence Banner */}
-        <div className="mt-12 md:mt-24 relative px-6">
+        <div className="mt-8 md:mt-16 relative px-6">
           <div className="max-w-4xl mx-auto">
             <StarBorder color="#044e47" speed="6s" thickness={8} className="shadow-2xl">
               <div className="bg-black/95 backdrop-blur-2xl rounded-[20px] p-8 md:p-12">

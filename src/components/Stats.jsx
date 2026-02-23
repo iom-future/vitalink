@@ -10,12 +10,12 @@ const STATS = [
 function Stats() {
   return (
     <div className='hero-stats'>
-          <div className="mx-auto -translate-y-8  relative z-10 w-[90%]">
+          <div className="mx-auto -translate-y-6  relative z-10 w-[90%]">
         <div className="max-w-[1200px] mx-auto grid bg-black/90 backdrop-blur-2xl shadow-2xl hover:shadow-2xl hover:shadow-black/50 rounded-2xl grid-cols-2 lg:grid-cols-4 border border-white/10 relative overflow-hidden">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.number}
-              className={`relative z-10 text-center py-8 md:py-12 px-6 `}
+              className={`relative z-10 text-center py-6 md:py-10 px-6 `}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

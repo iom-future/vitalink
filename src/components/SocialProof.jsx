@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
 
 const PROOF_STATS = [
-  { num: '94%', label: 'AI Detection Accuracy' },
-  { num: '3.2x', label: 'Reduction in Readmissions' },
-  { num: '200+', label: 'Clinicians in Network' },
-  { num: 'Live', label: 'in 14 US States' },
+  { num: '94%', label: 'AI early warning accuracy rate' },
+  { num: '3.2x', label: 'Fewer preventable readmissions' },
+  { num: '200+', label: 'Clinicians in early access' },
+  { num: '$0', label: 'Patient data sold without consent' },
 ];
 
 const TESTIMONIALS = [
@@ -14,19 +14,19 @@ const TESTIMONIALS = [
     name: 'Dr. Anita Sharma',
     role: 'Interventional Cardiologist',
     org: 'Mount Sinai Affiliate',
-    quote: 'Vitalink intercepted a major cardiac event in a high-risk patient 58 hours before they would have been symptomatic. This is the difference between reactive and proactive medicine.',
+    quote: 'I have been practising cardiology for 22 years. Vitalink is the first tool that has genuinely changed the way I practice. I intercepted a cardiac event in a patient 58 hours before it would have landed them in the ER. That is not a feature. That is a life.',
   },
   {
     name: 'Marcus T.',
-    role: 'Type 1 Diabetes Patient',
-    org: 'Chronic Disease Management',
-    quote: "Living with chronic disease often feels like navigating a dark room. Vitalink turned the lights on. I feel monitored, safe, and for the first time, I own my data.",
+    role: 'Patient',
+    org: 'Chronic Disease Management Program',
+    quote: "I have type 1 diabetes. For the first time in my life I feel like someone is watching over me — not a machine, not an algorithm, but a system that actually understands my body and gets the right information to my care team before I even know something is wrong.",
   },
   {
     name: 'Dr. Rachel Okonkwo',
     role: 'Chief Medical Officer',
     org: 'Regional Health Network',
-    quote: 'The data sovereignty feature sold the board. Total patient ownership combined with native integration into our clinical workflow. We went live in three weeks.',
+    quote: 'The blockchain health wallet was the feature that sold our hospital board. Our patients asked for data ownership for years. Vitalink delivered it — and the EHR integration made the rollout seamless. We were live in three weeks.',
   },
 ];
 
@@ -34,42 +34,46 @@ const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="py-32 lg:py-48 ">
+    <section id="social-proof" className="py-16 md:py-24 lg:py-32 ">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-16 lg:mb-32 px-4">
+        <div className="text-center mb-10 lg:mb-16 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="eyebrow">Real Impact</span>
+            <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>
             <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
-              Evidence-Based Confidence.
+              Medicine Changes When You Can See What's Really Happening.
             </h2>
-            <p className="text-text-muted text-lg md:text-xl max-w-[850px] mx-auto leading-relaxed">
-              Medicine changes when you can see what is really happening. Join the network of clinicians redefining the standard of care.
+            <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
+              Early access clinicians, patients, and hospital systems share what continuous monitoring with Vitalink has meant for them — and their patients.
             </p>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-20">
           {PROOF_STATS.map((stat, i) => (
             <motion.div 
               key={i}
-              className="p-8 rounded-2xl bg-teal-light/20 border border-primary/5 text-center"
+              className="p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.8 }}
             >
-              <div className="text-4xl md:text-5xl font-mono font-bold text-primary mb-3 tracking-tighter">{stat.num}</div>
-              <div className="text-secondary/60 text-xs font-black uppercase tracking-[0.2em]">{stat.label}</div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
+              
+              <div className="relative z-10">
+                <div className="text-4xl md:text-5xl font-mono font-bold text-primary mb-3 tracking-tighter">{stat.num}</div>
+                <div className="text-secondary/60 text-[0.65rem] font-black uppercase tracking-[0.2em]">{stat.label}</div>
+              </div>
             </motion.div>
           ))}
         </div>
 
         {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-8 md:mb-16">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={i}
@@ -86,7 +90,7 @@ export default function SocialProof() {
                 "{t.quote}"
               </p>
               <div className="flex flex-col">
-                <span className="font-black text-secondary text-xl">{t.name}</span>
+                <span className="font-semibold text-secondary text-xl">{t.name}</span>
                 <span className="text-primary font-bold text-sm tracking-tight mb-1">{t.role}</span>
                 <span className="text-text-muted text-xs font-bold uppercase tracking-widest leading-none">{t.org}</span>
               </div>
@@ -95,9 +99,9 @@ export default function SocialProof() {
         </div>
 
         {/* Logo Strip */}
-        <div className="pt-32 border-t border-secondary/5 text-center">
-          <p className="text-text-muted/40 text-[0.65rem] font-bold tracking-[0.3em] uppercase mb-16 px-6">
-            Trusted Integration partners 
+        <div className="pt-16 md:pt-24 border-t border-secondary/5 text-center">
+          <p className="text-text-muted/40 text-[0.65rem] font-bold tracking-[0.3em] uppercase mb-10 lg:mb-12 px-6">
+            Integrated With the Systems Your Team Already Uses
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale saturate-0">
             {LOGOS.map((logo, i) => (
