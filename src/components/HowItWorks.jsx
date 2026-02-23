@@ -41,7 +41,7 @@ export default function HowItWorks() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
 
   return (
-    <section id="how-it-works" className="py-24 lg:py-40 bg-teal-light/30 overflow-hidden">
+    <section id="how-it-works" className="py-16 md:py-24 lg:py-40 bg-teal-light/30 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div
@@ -49,12 +49,15 @@ export default function HowItWorks() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <span className="eyebrow">The Infrastructure of Care</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold mb-8 leading-[1.1] tracking-tight">
-              Continuous Care. Complete Control.
+            <span className="eyebrow">How Vitalink Works</span>
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary">
+          Continuous Care. Complete Transparency. Total Control.
             </h2>
-            <p className="text-text-muted text-xl max-w-[700px] mx-auto leading-relaxed">
-              Vitalink is built on three foundational layers that work in perfect harmony to bridge the gap between patients and clinicians.
+            <p className="text-text-muted text-base max-w-[700px] mx-auto leading-relaxed">
+         Vitalink is built on three layers that work together seamlessly — IoT wearables that capture health data around the
+clock, AI models that turn raw readings into meaningful clinical insight, and a patient-owned blockchain health record
+that keeps data secure, private, and always accessible. Together, they create a system where care never stops — even
+when the appointment does.
             </p>
           </motion.div>
         </div>
@@ -76,7 +79,7 @@ export default function HowItWorks() {
                   <div className={`text-sm font-bold tracking-widest uppercase mb-1 transition-colors ${activeTab.id === tab.id ? 'text-primary' : 'text-text-muted'}`}>
                     {tab.title}
                   </div>
-                  <div className={`font-bold text-lg tracking-tight ${activeTab.id === tab.id ? 'text-secondary' : 'text-text-muted/60'}`}>
+                  <div className={`font-bold text-lg tracking-tight font-primary ${activeTab.id === tab.id ? 'text-secondary' : 'text-text-muted/60'}`}>
                     {tab.label}
                   </div>
                 </div>

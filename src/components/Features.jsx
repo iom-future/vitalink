@@ -71,7 +71,7 @@ export default function Features() {
         </div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
           variants={container}
           initial="hidden"
           whileInView="show"
@@ -81,17 +81,28 @@ export default function Features() {
             <motion.div
               key={index}
               variants={item}
-              className="group"
+              className={`p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden ${
+                index === 0 || index === 3 || index === 4 ? 'lg:col-span-2' : 'lg:col-span-1'
+              }`}
             >
-              <div className="mb-8 w-14 h-14 rounded-2xl bg-surface-light flex items-center justify-center text-primary group-hover:scale-110 transition-all duration-500 shadow-sm border border-secondary/5">
-                {feature.icon}
+              {/* Background Icon Effect */}
+              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+                {React.cloneElement(feature.icon, { size: 240, strokeWidth: 1.5 })}
               </div>
-              <h3 className="text-2xl font-bold mb-4 tracking-tight text-secondary group-hover:text-primary transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-text-muted text-lg leading-relaxed">
-                {feature.description}
-              </p>
+
+              <div className="relative z-10 h-full flex flex-col">
+                <h3 className="text-2xl font-semibold mb-4 tracking-tight text-secondary group-hover:text-primary transition-colors font-primary">
+                  {feature.title}
+                </h3>
+                <p className="text-text-muted text-base leading-relaxed mb-6">
+                  {feature.description}
+                </p>
+                <div className="mt-auto">
+                  <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    See how it works <Zap size={14} className="fill-current" />
+                  </a>
+                </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

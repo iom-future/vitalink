@@ -119,6 +119,12 @@ body {
     background: rgba(13, 148, 136, 0.06);
     border: 1px solid rgba(13, 148, 136, 0.1);
   }
+
+  .eyebrow-red {
+    @apply inline-block text-[0.65rem] font-bold tracking-[0.25em] uppercase text-red-600 mb-4 px-4 py-1.5 rounded-full;
+    background: rgba(220, 38, 38, 0.06);
+    border: 1px solid rgba(220, 38, 38, 0.1);
+  }
 }
 
 /* ── Keyframe Animations ────────────────────────────── */

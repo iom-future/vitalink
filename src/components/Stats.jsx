@@ -1,10 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 const STATS = [
-  { number: '$150B', label: 'Market Opportunity' },
-  { number: '94%', label: 'Detection Accuracy' },
-  { number: '48hr', label: 'Response Lead Time' },
-  { number: '3.2x', label: 'Readmission Reduction' },
+  { number: '$150B', label: 'Remote Patient Monitoring TAM' },
+  { number: '94%', label: 'Early Detection Accuracy Rate' },
+  { number: '48hr', label: 'Avg. Alert to Critical Response' },
+  { number: '3.2x', label: 'Reduction in Hospital Readmissions' },
 ];
 
 function Stats() {
@@ -24,7 +24,7 @@ function Stats() {
               <div className="font-mono text-3xl md:text-4xl font-black text-accent mb-2">
                 {stat.number}
               </div>
-              <div className="text-white/80 text-[0.7rem] font-bold uppercase tracking-[0.2em]">{stat.label}</div>
+              <div className="text-white/80 text-[0.7rem] font-medium text-sm md:text-base  tracking-[0.2em]">{stat.label}</div>
             </motion.div>
           ))}
         </div>

@@ -4,19 +4,19 @@ import { Activity, Database, Lock, ArrowUpRight } from 'lucide-react';
 
 const PROBLEMS = [
   {
-    icon: <Activity className="text-primary" size={24} />,
-    title: 'Snapshot-Based Care',
-    desc: "Patients see their doctor fewer than 4 times per year on average. 361 days of vital health data remain invisible, leaving clinicians to make critical decisions based on snapshots, not the full story.",
+    icon: <Activity className="text-red-500" size={24} />,
+    title: 'Monitoring Gaps Between Visits',
+    desc: "The average patient sees their doctor fewer than 4 times a year. Chronic conditions like diabetes, heart disease, and hypertension change daily. What happens in the 361 days between visits goes completely unrecorded.",
   },
   {
-    icon: <Database className="text-primary" size={24} />,
-    title: 'Data Fragmentation',
-    desc: 'Health records are siloed across EMRs, labs, and specialists. No single entity has the full picture, leading to dangerous treatment overlaps and delayed interventions.',
+    icon: <Database className="text-red-500" size={24} />,
+    title: 'Fragmented, Inaccessible Health Data',
+    desc: "A patient's health history lives across a dozen different systems — each one siloed, incompatible, and inaccessible when it matters most. No single clinician ever sees the full picture.",
   },
   {
-    icon: <Lock className="text-primary" size={24} />,
-    title: 'Zero Patient Agency',
-    desc: 'Patients generate the data but have no control over it. They lack visibility, portability, or the ability to benefit from the records they create.',
+    icon: <Lock className="text-red-500" size={24} />,
+    title: 'Patients Have No Ownership of Their Data',
+    desc: "Health data is one of the most valuable assets a person generates — yet patients have zero control, zero visibility, and zero financial benefit from how it is used, shared, or sold by healthcare institutions.",
   },
 ];
 
@@ -44,12 +44,15 @@ export default function Problem() {
           className="text-center"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
         >
-          <span className="eyebrow">The Crisis of Reactivity</span>
+          <span className="eyebrow-red">The Problem We Exist To Solve</span>
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary">
             Healthcare reacts to illness.<br className="hidden md:inline" /> We exist to prevent it.
           </h2>
           <p className="text-text-muted text-base max-w-[800px] mx-auto leading-relaxed">
-            The gap between clinical visits is costing lives. Vitalink creates a continuous thread of care, ensuring no patient is left unmonitored.
+           Every year, millions of preventable hospital admissions occur because warning signs went undetected between clinical
+visits. Patients leave appointments with no continuous oversight. Clinicians rely on snapshot data — a blood pressure
+reading, a single ECG — to make decisions about conditions that evolve over days and weeks. The system wasn't
+designed for continuous care. Vitalink is.
           </p>
         </motion.div>
       </div>
@@ -60,18 +63,18 @@ export default function Problem() {
           {PROBLEMS.map((p, i) => (
             <motion.div
               key={p.title}
-              className="p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
+              className="p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(239,68,68,0.1)_0,rgba(239,68,68,0)_50%,rgba(239,68,68,0)_100%)] hover:border-red-500/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
               variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}
             >
               {/* Background Icon Effect */}
-              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+              <div className="absolute -bottom-10 -right-10 text-red-500 opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
                 {React.cloneElement(p.icon, { size: 240, strokeWidth: 1.5 })}
               </div>
 
              
-              <h3 className="text-xl font-medium mb-4 tracking-tight relative z-10">{p.title}</h3>
+              <h3 className="text-xl font-medium mb-4 font-primary tracking-tight relative z-10">{p.title}</h3>
               <p className="text-text-muted leading-relaxed mb-6 relative z-10">{p.desc}</p>
-              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-red-500 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
                 Learn how we solve it <ArrowUpRight size={14} />
               </a>
             </motion.div>
@@ -80,21 +83,21 @@ export default function Problem() {
 
         {/* Pull Quote - STAYS DARK */}
         <motion.div
-          className="bg-secondary rounded-[40px] py-16 px-10 md:px-20 text-white relative overflow-hidden"
+          className="bg-black/90 backdrop-blur-2xl shadow-2xl rounded-2xl py-16 px-10 md:px-20 text-white border border-white/10 relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
         >
-          <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
           <div className="relative z-10 space-y-8">
             {PULL_STATS.map((s, i) => (
               <div key={i} className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8 border-b border-white/5 pb-8 last:border-none">
                 <span className="text-accent font-bold text-3xl md:text-4xl font-mono tracking-tighter shrink-0">{s.highlight}</span>
-                <p className="text-white/70 text-lg md:text-xl leading-relaxed">{s.text}</p>
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">{s.text}</p>
               </div>
             ))}
-            <p className="text-white font-black text-2xl md:text-3xl pt-8 tracking-tight">
+            <p className="text-white font-black text-2xl md:text-3xl pt-8 tracking-tight font-primary">
               The technology is ready. The platform is Vitalink.
             </p>
           </div>
