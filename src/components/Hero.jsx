@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, ArrowRight, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const STATS = [
   { number: '$150B', label: 'Market Opportunity' },
@@ -52,7 +52,8 @@ export default function Hero({ bannerVisible }) {
           <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
             Monitored in Real Time.
           </span>
-         
+          <br className="hidden sm:block" />
+          <span className="text-primary/90">Acted On Before It's Too Late.</span>
         </motion.h1>
 
         <motion.p
@@ -73,14 +74,14 @@ export default function Hero({ bannerVisible }) {
           className="flex flex-col sm:flex-row gap-5 justify-center mb-6"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={3}
         >
-          <a href="#cta" className="btn-teal justify-center group px-10">
+          <Link to="/pricing" className="btn-teal justify-center group px-10">
             Start Monitoring Now 
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a href="#how-it-works" className="btn-outline-dark justify-center group px-10 bg-white">
+          </Link>
+          <Link to="/how-it-works" className="btn-outline-dark justify-center group px-10 bg-white">
             <Play size={18} className="fill-current" />
             See It In Action
-          </a>
+          </Link>
         </motion.div>
 
         <motion.div

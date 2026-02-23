@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Database, Lock, ArrowUpRight } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import { Counter } from './Counter';
 
 const PROBLEMS = [
   {
@@ -21,9 +23,21 @@ const PROBLEMS = [
 ];
 
 const PULL_STATS = [
-  { highlight: '1 in 5', text: 'US adults live with a chronic condition that goes unmonitored between clinical visits.' },
-  { highlight: '$320B', text: 'is lost annually to preventable hospital admissions caused by late-stage reactivity.' },
-  { highlight: '78%', text: 'of patients are ready for continuous monitoring, yet the infrastructure hasn’t existed until now.' },
+  { 
+    highlight: '1 in 5', 
+    text: 'US adults live with a chronic condition that goes unmonitored between clinical visits.' 
+  },
+  { 
+    number: 320, 
+    prefix: '$', 
+    suffix: 'B', 
+    text: 'is lost annually to preventable hospital admissions caused by late-stage reactivity.' 
+  },
+  { 
+    number: 78, 
+    suffix: '%', 
+    text: 'of patients are ready for continuous monitoring, yet the infrastructure hasn’t existed until now.' 
+  },
 ];
 
 const fadeUp = {
@@ -36,6 +50,11 @@ const fadeUp = {
 };
 
 export default function Problem() {
+  const { ref: statsRef, inView: statsInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <section id="problem" className="py-16 md:py-24 lg:py-32 ">
       {/* Header */}
@@ -83,6 +102,7 @@ designed for continuous care. Vitalink is.
 
         {/* Pull Quote - STAYS DARK */}
         <motion.div
+          ref={statsRef}
           className="bg-black/95 backdrop-blur-2xl shadow-2xl rounded-2xl py-12 md:py-16 px-10 md:px-24 text-white border border-white/10 relative overflow-hidden"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -93,7 +113,18 @@ designed for continuous care. Vitalink is.
           <div className="relative z-10 space-y-10">
             {PULL_STATS.map((s, i) => (
               <div key={i} className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 border-b border-white/5 pb-10 last:border-none">
-                <span className="text-accent font-black text-4xl md:text-5xl font-mono tracking-tighter shrink-0">{s.highlight}</span>
+                <span className="text-accent font-black text-4xl md:text-5xl font-mono tracking-tighter shrink-0">
+                  {s.number ? (
+                    <Counter 
+                      value={s.number} 
+                      prefix={s.prefix || ''} 
+                      suffix={s.suffix || ''} 
+                      inView={statsInView} 
+                    />
+                  ) : (
+                    s.highlight
+                  )}
+                </span>
                 <p className="text-white/80 text-lg md:text-xl leading-relaxed">{s.text}</p>
               </div>
             ))}

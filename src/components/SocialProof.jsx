@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Quote } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
+import { Counter } from './Counter';
 
 const PROOF_STATS = [
-  { num: '94%', label: 'AI early warning accuracy rate' },
-  { num: '3.2x', label: 'Fewer preventable readmissions' },
-  { num: '200+', label: 'Clinicians in early access' },
-  { num: '$0', label: 'Patient data sold without consent' },
+  { number: 94, suffix: '%', label: 'AI early warning accuracy rate' },
+  { number: 3.2, suffix: 'x', decimals: 1, label: 'Fewer preventable readmissions' },
+  { number: 200, suffix: '+', label: 'Clinicians in early access' },
+  { number: 0, prefix: '$', label: 'Patient data sold without consent' },
 ];
 
 const TESTIMONIALS = [
@@ -33,6 +35,11 @@ const TESTIMONIALS = [
 const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
 export default function SocialProof() {
+  const { ref: statsRef, inView: statsInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
   return (
     <section id="social-proof" className="py-16 md:py-24 lg:py-32 ">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -52,20 +59,27 @@ export default function SocialProof() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-20">
+        <div ref={statsRef} className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-12 md:mb-20">
           {PROOF_STATS.map((stat, i) => (
             <motion.div 
               key={i}
               className="p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
               initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              animate={statsInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: i * 0.1, duration: 0.8 }}
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
               
               <div className="relative z-10">
-                <div className="text-4xl md:text-5xl font-mono font-bold text-primary mb-3 tracking-tighter">{stat.num}</div>
+                <div className="text-4xl md:text-5xl font-mono font-bold text-primary mb-3 tracking-tighter">
+                  <Counter 
+                    value={stat.number} 
+                    decimals={stat.decimals || 0} 
+                    prefix={stat.prefix || ''} 
+                    suffix={stat.suffix || ''} 
+                    inView={statsInView} 
+                  />
+                </div>
                 <div className="text-secondary/60 text-[0.65rem] font-black uppercase tracking-[0.2em]">{stat.label}</div>
               </div>
             </motion.div>
