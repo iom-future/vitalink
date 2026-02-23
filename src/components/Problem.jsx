@@ -122,12 +122,12 @@ export default function Problem() {
   }, { scope: containerRef });
 
   return (
-    <section id="problem" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
+    <section id="problem" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip" aria-labelledby="problem-heading">
       {/* Header */}
       <div className="max-w-[1200px] mx-auto px-6 mb-10">
         <div className="problem-header text-center">
           <span className="eyebrow-red">The Problem We Exist To Solve</span>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+          <h2 id="problem-heading" className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
             Healthcare reacts to illness.<br className="hidden md:inline" /> We exist to prevent it.
           </h2>
           <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
@@ -148,15 +148,15 @@ designed for continuous care. Vitalink is.
               className="problem-card opacity-0 p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(239,68,68,0.1)_0,rgba(239,68,68,0)_50%,rgba(239,68,68,0)_100%)] hover:border-red-500/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
             >
               {/* Background Icon Effect */}
-              <div className="absolute -bottom-10 -right-10 text-red-500 opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+              <div className="absolute -bottom-10 -right-10 text-red-500 opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none" aria-hidden="true">
                 {React.cloneElement(p.icon, { size: 240, strokeWidth: 1.5 })}
               </div>
 
              
               <h3 className="text-2xl font-black mb-4 tracking-tight text-secondary relative z-10 leading-tight">{p.title}</h3>
               <p className="text-text-muted leading-relaxed mb-8 relative z-10">{p.desc}</p>
-              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-red-500 opacity-0 group-hover:opacity-100 transition-opacity relative z-10 uppercase tracking-widest">
-                Learn how we solve it <ArrowUpRight size={14} />
+              <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-red-500 opacity-0 group-hover:opacity-100 transition-opacity relative z-10 uppercase tracking-widest" aria-label={`Learn how we solve ${p.title}`}>
+                Learn how we solve it <ArrowUpRight size={14} aria-hidden="true" />
               </a>
             </div>
           ))}

@@ -39,6 +39,7 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500  ">
       {!scrolled && bannerVisible && <Banner onClose={onBannerClose} />}
       <nav
+        aria-label="Main Navigation"
         className={`transition-all duration-500 py-4 ${
           scrolled
             ? 'bg-white/95 backdrop-blur-xl shadow-clinical py-2'
@@ -81,9 +82,11 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className={`lg:hidden bg-transparent border-none cursor-pointer transition-colors ${scrolled ? 'text-secondary' : 'text-secondary'}`}
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
 
@@ -91,7 +94,13 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
 
       {/* Mobile Menu Overlay - Moved outside nav to ensure full-screen coverage */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-[999] bg-white lg:hidden flex flex-col animate-[fadeUp_0.3s_ease-out]">
+        <div 
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Menu"
+          className="fixed inset-0 z-[999] bg-white lg:hidden flex flex-col animate-[fadeUp_0.3s_ease-out]"
+        >
           {/* Header inside overlay to have a close button */}
           <div className="flex items-center justify-between px-4 py-4 border-b border-secondary/5">
             <Link to="/" onClick={() => setMobileOpen(false)} className="text-2xl font-black tracking-tight text-secondary uppercase">

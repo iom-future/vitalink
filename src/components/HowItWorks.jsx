@@ -55,7 +55,7 @@ function StepCard({ step, index, isCarousel = false }) {
     <div className={`${step.bgColor} rounded-2xl p-6 md:p-10 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full -mr-20 -mt-20 blur-3xl transition-opacity group-hover:opacity-100 opacity-60"></div>
       
-      <div className={`absolute -top-10 -right-10 ${step.iconColor} opacity-[0.1] group-hover:opacity-[0.15] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none`}>
+      <div className={`absolute -top-10 -right-10 ${step.iconColor} opacity-[0.1] group-hover:opacity-[0.15] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none`} aria-hidden="true">
         {React.cloneElement(step.icon, { size: 240, strokeWidth: 1 })}
       </div>
 
@@ -176,11 +176,11 @@ export default function HowItWorks() {
   }, { scope: containerRef });
 
   return (
-    <section id="how-it-works" ref={containerRef} className="pb-16 md:pb-24 lg:pb-32 overflow-x-clip">
+    <section id="how-it-works" ref={containerRef} className="pb-16 md:pb-24 lg:pb-32 overflow-x-clip" aria-labelledby="hiw-heading">
       <div className="max-w-[1240px] mx-auto ">
         <div className="hiw-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">How Vitalink Works</span>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight px-6 text-secondary">
+          <h2 id="hiw-heading" className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight px-6 text-secondary">
             Continuous Care. <br className="sm:hidden" /> Complete Transparency. <br className="sm:hidden" /> Total Control.
           </h2>
           <p className="text-text-muted text-base md:text-lg max-w-[800px] mx-auto leading-relaxed">
@@ -241,7 +241,7 @@ export default function HowItWorks() {
                   <div className="flex items-center justify-center gap-4 sm:gap-12">
                     {/* IoT */}
                     <div className="convergence-icon flex flex-col items-center gap-4 group">
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-emerald-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(16,185,129,0.15)] border border-emerald-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] transition-all duration-500">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-emerald-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(16,185,129,0.15)] border border-emerald-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] transition-all duration-500" aria-hidden="true">
                         <Watch size={40} strokeWidth={1.5} className="md:size-12" />
                       </div>
                       <div className="text-center">
@@ -250,11 +250,11 @@ export default function HowItWorks() {
                       </div>
                     </div>
 
-                    <Plus className="text-white/20" size={24} strokeWidth={1} />
+                    <Plus className="text-white/20" size={24} strokeWidth={1} aria-hidden="true" />
 
                     {/* AI */}
                     <div className="convergence-icon flex flex-col items-center gap-4 group">
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-blue-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(59,130,246,0.15)] border border-blue-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] transition-all duration-500">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-blue-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(59,130,246,0.15)] border border-blue-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] transition-all duration-500" aria-hidden="true">
                         <Brain size={40} strokeWidth={1.5} className="md:size-12" />
                       </div>
                       <div className="text-center">
@@ -263,11 +263,10 @@ export default function HowItWorks() {
                       </div>
                     </div>
 
-                    <Plus className="hidden sm:block text-white/20" size={24} strokeWidth={1} />
+                    <Plus className="hidden sm:block text-white/20" size={24} strokeWidth={1} aria-hidden="true" />
 
-                    {/* Desktop Blockchain */}
                     <div className="convergence-icon hidden sm:flex flex-col items-center gap-4 group">
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500" aria-hidden="true">
                         <Link size={40} strokeWidth={1.5} className="md:size-12" />
                       </div>
                       <div className="text-center">
@@ -281,7 +280,7 @@ export default function HowItWorks() {
                   <div className="sm:hidden flex flex-col items-center gap-6">
                     <Plus className="text-white/20" size={24} strokeWidth={1} />
                     <div className="convergence-icon flex flex-col items-center gap-4 group">
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500" aria-hidden="true">
                         <Link size={40} strokeWidth={1.5} className="md:size-12" />
                       </div>
                       <div className="text-center">

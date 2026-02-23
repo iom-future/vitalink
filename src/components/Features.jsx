@@ -82,11 +82,11 @@ export default function Features() {
   }, { scope: containerRef });
 
   return (
-    <section id="features" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
+    <section id="features" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip" aria-labelledby="features-heading">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="features-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">WHAT VITALINK DOES FOR YOU</span>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+          <h2 id="features-heading" className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
             Every Feature Designed With One Question in Mind: <br className="hidden md:block" /> Is the Patient Safe Right Now?
           </h2>
           <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
@@ -101,7 +101,7 @@ export default function Features() {
             className="feature-card opacity-0 p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(4,78,71,0.08)_0,rgba(4,78,71,0)_50%,rgba(4,78,71,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden h-full"
           >
               {/* Background Icon Effect */}
-              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
+              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none" aria-hidden="true">
                 {React.cloneElement(feature.icon, { size: 240, strokeWidth: 1.5 })}
               </div>
 
@@ -113,8 +113,8 @@ export default function Features() {
                   {feature.description}
                 </p>
                 <div className="mt-auto">
-                  <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                    See how it works <Zap size={14} className="fill-current" />
+                  <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity" aria-label={`See how ${feature.title} works`}>
+                    See how it works <Zap size={14} className="fill-current" aria-hidden="true" />
                   </a>
                 </div>
               </div>

@@ -31,7 +31,7 @@ export default function CtaSection() {
   }, { scope: containerRef });
 
   return (
-    <section id="cta" ref={containerRef} className="py-16 md:py-24 relative overflow-x-clip">
+    <section id="cta" ref={containerRef} className="py-16 md:py-24 relative overflow-x-clip" aria-labelledby="cta-heading">
       {/* Urgency Banner */}
       <div className="bg-primary py-3 mb-8 sm:mb-12">
         <div className="max-w-[1200px] mx-auto px-6">
@@ -45,7 +45,7 @@ export default function CtaSection() {
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Left: Content */}
           <div className="cta-content opacity-0 flex-1 text-center lg:text-left">
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+            <h2 id="cta-heading" className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
               Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
             </h2>
             <p className="text-text-muted text-base md:text-lg mb-12 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
@@ -54,13 +54,13 @@ export default function CtaSection() {
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-16">
               <div className="flex items-center gap-3 text-secondary font-bold">
-                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary" aria-hidden="true">
                   <Mail size={18} />
                 </div>
                 hello@vitalink.io
               </div>
               <div className="flex items-center gap-3 text-secondary font-bold">
-                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary" aria-hidden="true">
                   <Phone size={18} />
                 </div>
                 +1 (650) 000-VITA
@@ -75,28 +75,37 @@ export default function CtaSection() {
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <input type="text" placeholder="Full Name" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
+                    <label htmlFor="cta-name" className="sr-only">Full Name</label>
+                    <input id="cta-name" type="text" placeholder="Full Name" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
                   </div>
                   <div>
-                    <input type="email" placeholder="Work Email" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
+                    <label htmlFor="cta-email" className="sr-only">Work Email</label>
+                    <input id="cta-email" type="email" placeholder="Work Email" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
                   </div>
                 </div>
                 <div>
-                  <input type="text" placeholder="Institution / Hospital" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
+                  <label htmlFor="cta-institution" className="sr-only">Institution / Hospital</label>
+                  <input id="cta-institution" type="text" placeholder="Institution / Hospital" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <select defaultValue="" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all bg-white/50 appearance-none">
-                    <option value="" disabled>Select Your Role</option>
-                    <option>Clinician</option>
-                    <option>Hospital Admin</option>
-                    <option>Researcher</option>
-                    <option>Other</option>
-                  </select>
-                  <input type="number" placeholder="No. of Patients to Monitor" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
+                  <div>
+                    <label htmlFor="cta-role" className="sr-only">Select Your Role</label>
+                    <select id="cta-role" defaultValue="" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all bg-white/50 appearance-none">
+                      <option value="" disabled>Select Your Role</option>
+                      <option>Clinician</option>
+                      <option>Hospital Admin</option>
+                      <option>Researcher</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="cta-patients" className="sr-only">No. of Patients to Monitor</label>
+                    <input id="cta-patients" type="number" placeholder="No. of Patients to Monitor" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
+                  </div>
                 </div>
                 <button type="submit" className="btn-teal w-full justify-center group mt-2 h-14 text-sm sm:text-base font-semibold tracking-widest">
                   Schedule My Demo
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform ml-2" />
+                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform ml-2" aria-hidden="true" />
                 </button>
                 <p className="text-center text-text-muted text-[0.65rem] font-bold uppercase tracking-wider mt-4">
                   HIPAA-compliant. Your data is never sold or shared without consent. <br /> No credit card required. Cancel any time.

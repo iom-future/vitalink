@@ -47,7 +47,7 @@ function Stats() {
   }, { scope: containerRef });
 
   return (
-    <div className='hero-stats relative z-20 overflow-x-clip' ref={containerRef}>
+    <section className='hero-stats relative z-20 overflow-x-clip' ref={containerRef} aria-label="Key Statistics">
       <div className="mx-auto -translate-y-8 relative w-[90%] max-w-[1200px]">
         <div 
           ref={ref} 
@@ -74,7 +74,7 @@ function Stats() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

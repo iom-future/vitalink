@@ -49,8 +49,8 @@ export default function Hero({ bannerVisible }) {
   }, { scope: containerRef });
 
   return (
-    <section id="hero" ref={containerRef} className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[170px]' : 'pt-[80px]'}`}>
-      <div className="absolute inset-0 pointer-events-none opacity-60">
+    <section id="hero" aria-label="Hero" ref={containerRef} className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[170px]' : 'pt-[80px]'}`}>
+      <div className="absolute inset-0 pointer-events-none opacity-60" aria-hidden="true">
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/90 pointer-events-none" />
       </div>
 
@@ -82,7 +82,7 @@ export default function Hero({ bannerVisible }) {
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link to="/how-it-works" className="btn-outline-dark md:w-[40%] lg:w-[30%] justify-center group px-10">
-            <Play size={18} className="fill-current" />
+            <Play size={18} className="fill-current" aria-hidden="true" />
             See It In Action
           </Link>
         </div>
@@ -91,7 +91,7 @@ export default function Hero({ bannerVisible }) {
           <div className="flex gap-16 animate-[marquee_30s_linear_infinite] whitespace-nowrap w-max">
             {[...TRUST_BADGES, ...TRUST_BADGES, ...TRUST_BADGES, ...TRUST_BADGES].map((badge, idx) => (
               <span key={`${badge}-${idx}`} className="flex items-center gap-2 text-secondary text-xs font-bold tracking-widest uppercase">
-                <ShieldCheck size={14} className="text-primary" />
+                <ShieldCheck size={14} className="text-primary" aria-hidden="true" />
                 {badge}
               </span>
             ))}

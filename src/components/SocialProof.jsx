@@ -108,11 +108,11 @@ export default function SocialProof() {
   }, { scope: containerRef });
 
   return (
-    <section id="social-proof" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
+    <section id="social-proof" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip" aria-labelledby="social-proof-heading">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="proof-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>
-          <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+          <h2 id="social-proof-heading" className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
             Medicine Changes When You Can See What's Really Happening.
           </h2>
           <p className="text-text-muted text-base md:text-lg max-w-[850px] mx-auto leading-relaxed">
@@ -126,7 +126,7 @@ export default function SocialProof() {
               key={i}
               className="stat-card opacity-0 p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60" aria-hidden="true"></div>
               
               <div className="relative z-10">
                 <div className="text-4xl md:text-5xl font-mono font-bold text-primary mb-3 tracking-tighter">
@@ -152,7 +152,7 @@ export default function SocialProof() {
               className="testimonial-card opacity-0 flex flex-col items-start p-2"
             >
               <div className="mb-10 p-4 rounded-2xl bg-primary/5 text-primary">
-                <Quote size={20} className="fill-current opacity-20" />
+                <Quote size={20} className="fill-current opacity-20" aria-hidden="true" />
               </div>
               <p className="text-secondary text-xl font-black leading-relaxed mb-10 flex-grow tracking-tight">
                 "{t.quote}"

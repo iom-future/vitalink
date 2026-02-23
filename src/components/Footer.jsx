@@ -35,18 +35,18 @@ export default function Footer() {
             <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
               Closing the gap between your body and your care team — every second of every day.
             </p>
-            <div className="flex gap-4">
+            <nav className="flex gap-4" aria-label="Social Media">
               {[
                 { Icon: Linkedin, href: '#', label: 'LinkedIn' },
                 { Icon: Twitter, href: '#', label: 'Twitter / X' },
                 { Icon: Youtube, href: '#', label: 'YouTube' },
                 { Icon: Microscope, href: '#', label: 'PubMed Research Profile' }
-              ].map(({ Icon, href }, i) => (
-                <a key={i} href={href} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:text-primary hover:border-primary/30 hover:bg-white/10 transition-all">
-                  <Icon size={18} />
+              ].map(({ Icon, href, label }, i) => (
+                <a key={i} href={href} aria-label={label} className="w-10 h-10 rounded-xl bg-white/5 border border-white/5 flex items-center justify-center text-white/50 hover:text-primary hover:border-primary/30 hover:bg-white/10 transition-all">
+                  <Icon size={18} aria-hidden="true" />
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
 
           {/* Links */}
@@ -89,11 +89,11 @@ export default function Footer() {
         <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-8 text-center lg:text-left">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex items-center gap-2 text-white/30 text-[0.6rem] font-black uppercase tracking-[0.2em]">
-              <Phone size={12} className="text-primary/50" />
+              <Phone size={12} className="text-primary/50" aria-hidden="true" />
               +1 (650) 000-VITA
             </div>
             <div className="flex items-center gap-2 text-white/30 text-[0.6rem] font-black uppercase tracking-[0.2em]">
-              <MapPin size={12} className="text-primary/50" />
+              <MapPin size={12} className="text-primary/50" aria-hidden="true" />
               Headquarters: Boston, MA, USA
             </div>
           </div>
