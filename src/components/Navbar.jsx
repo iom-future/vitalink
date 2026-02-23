@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import Banner from './Banner';
@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: 'Pricing', href: '/pricing' },
 ];
 
-export default function Navbar({ bannerVisible, onBannerClose }) {
+function Navbar({ bannerVisible, onBannerClose }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { pathname } = useLocation();
@@ -158,3 +158,5 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
     </header>
   );
 }
+
+export default memo(Navbar);

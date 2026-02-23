@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Twitter, Linkedin, Mail, MapPin, Youtube, Microscope, Phone } from 'lucide-react';
 
 const FOOTER_LINKS = [
@@ -22,7 +22,7 @@ const FOOTER_LINKS = [
   },
 ];
 
-export default function Footer() {
+function Footer() {
   return (
     <footer className="bg-secondary text-white pt-24 pb-12 border-t border-white/5">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -114,3 +114,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer);

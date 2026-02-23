@@ -158,15 +158,27 @@ const ECGBackground = ({
     window.addEventListener('resize', resize);
     resize();
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+
     function update(t) {
-      program.uniforms.iTime.value = t * 0.001;
-      renderer.render({ scene: mesh });
+      if (isVisible) {
+        program.uniforms.iTime.value = t * 0.001;
+        renderer.render({ scene: mesh });
+      }
       rafId.current = requestAnimationFrame(update);
     }
     rafId.current = requestAnimationFrame(update);
 
     return () => {
       cancelAnimationFrame(rafId.current);
+      observer.disconnect();
       window.removeEventListener('resize', resize);
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();

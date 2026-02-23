@@ -412,30 +412,45 @@ export default function FloatingLines({
       renderer.domElement.addEventListener('pointerleave', handlePointerLeave);
     }
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.01 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     let raf = 0;
     const renderLoop = () => {
-      uniforms.iTime.value = clock.getElapsedTime();
+      if (isVisible) {
+        uniforms.iTime.value = clock.getElapsedTime();
 
-      if (interactive) {
-        currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
-        uniforms.iMouse.value.copy(currentMouseRef.current);
+        if (interactive) {
+          currentMouseRef.current.lerp(targetMouseRef.current, mouseDamping);
+          uniforms.iMouse.value.copy(currentMouseRef.current);
 
-        currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
-        uniforms.bendInfluence.value = currentInfluenceRef.current;
+          currentInfluenceRef.current += (targetInfluenceRef.current - currentInfluenceRef.current) * mouseDamping;
+          uniforms.bendInfluence.value = currentInfluenceRef.current;
+        }
+
+        if (parallax) {
+          currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
+          uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
+        }
+
+        renderer.render(scene, camera);
       }
-
-      if (parallax) {
-        currentParallaxRef.current.lerp(targetParallaxRef.current, mouseDamping);
-        uniforms.parallaxOffset.value.copy(currentParallaxRef.current);
-      }
-
-      renderer.render(scene, camera);
       raf = requestAnimationFrame(renderLoop);
     };
     renderLoop();
 
     return () => {
       cancelAnimationFrame(raf);
+      observer.disconnect();
       // eslint-disable-next-line react-hooks/exhaustive-deps
       if (ro && containerRef.current) {
         ro.disconnect();
