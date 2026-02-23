@@ -121,7 +121,7 @@ export default function SocialProof() {
           {PROOF_STATS.map((stat, i) => (
             <div 
               key={i}
-              className="stat-card p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
+              className="stat-card opacity-0 p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
               
@@ -146,7 +146,7 @@ export default function SocialProof() {
           {TESTIMONIALS.map((t, i) => (
             <div
               key={i}
-              className="testimonial-card flex flex-col items-start p-2"
+              className="testimonial-card opacity-0 flex flex-col items-start p-2"
             >
               <div className="mb-10 p-4 rounded-2xl bg-primary/5 text-primary">
                 <Quote size={20} className="fill-current opacity-20" />

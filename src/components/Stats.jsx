@@ -55,7 +55,7 @@ function Stats() {
           {STATS.map((stat, i) => (
             <div 
               key={i} 
-              className="stat-item text-center py-8 md:py-12 group"
+              className="stat-item opacity-0 text-center py-8 md:py-12 group"
             >
               <div className="font-mono text-4xl md:text-5xl font-black text-accent mb-2 group-hover:scale-110 transition-transform duration-500">
                 <Counter 

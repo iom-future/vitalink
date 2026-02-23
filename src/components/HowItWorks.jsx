@@ -82,7 +82,7 @@ function StepCard({ step, index, isCarousel = false }) {
   }
 
   return (
-    <div className="step-card h-full">
+    <div className="step-card opacity-0 h-full">
       {CardContent}
     </div>
   );

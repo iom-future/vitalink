@@ -43,7 +43,7 @@ export default function CtaSection() {
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Left: Content */}
-          <div className="cta-content flex-1 text-center lg:text-left">
+          <div className="cta-content opacity-0 flex-1 text-center lg:text-left">
             <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
               Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
             </h2>
@@ -69,7 +69,7 @@ export default function CtaSection() {
 
           {/* Right: Modern Form Card */}
           <div className="flex-1 w-full max-w-[550px]">
-            <div className="cta-form glass-card-light p-8 md:p-10 relative overflow-hidden">
+            <div className="cta-form opacity-0 glass-card-light p-8 md:p-10 relative overflow-hidden">
               <h3 className="text-2xl font-bold mb-8 tracking-tight">Request Your Free Clinical Demo</h3>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
