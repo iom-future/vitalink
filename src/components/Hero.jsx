@@ -78,7 +78,7 @@ export default function Hero({ bannerVisible }) {
             Start Monitoring Now 
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-          <Link to="/how-it-works" className="btn-outline-dark justify-center group px-10 bg-white">
+          <Link to="/how-it-works" className="btn-outline-dark justify-center px-10">
             <Play size={18} className="fill-current" />
             See It In Action
           </Link>

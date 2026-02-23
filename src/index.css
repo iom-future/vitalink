@@ -87,7 +87,8 @@ h1, h2, h3, h4, h5, h6 {
   }
   .btn-primary:hover {
     @apply bg-primary;
-    transform: scale(1.02);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2);
   }
 
   .btn-teal {
@@ -97,7 +98,8 @@ h1, h2, h3, h4, h5, h6 {
   }
   .btn-teal:hover {
     @apply bg-primary-dark text-center;
-    transform: scale(1.02);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(13, 148, 136, 0.4);
   }
 
   .btn-outline {
@@ -111,11 +113,14 @@ h1, h2, h3, h4, h5, h6 {
 
   .btn-outline-dark {
     @apply inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-[0.95rem] cursor-pointer
-           bg-transparent text-secondary border border-secondary/10
+           bg-white text-secondary border border-secondary/10
            transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)];
+    box-shadow: 0 2px 4px rgba(15, 23, 42, 0.05);
   }
   .btn-outline-dark:hover {
-    @apply bg-secondary text-white;
+    @apply bg-secondary text-white border-secondary;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(15, 23, 42, 0.2);
   }
 
   .font-primary {

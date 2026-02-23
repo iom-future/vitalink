@@ -24,7 +24,8 @@ const PROBLEMS = [
 
 const PULL_STATS = [
   { 
-    highlight: '1 in 5', 
+    number: 1, 
+    suffix: ' in 5', 
     text: 'US adults live with a chronic condition that goes unmonitored between clinical visits.' 
   },
   { 
