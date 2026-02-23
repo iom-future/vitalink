@@ -21,6 +21,14 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [mobileOpen]);
+
   return (
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500  ">
       {!scrolled && bannerVisible && <Banner onClose={onBannerClose} />}
@@ -73,34 +81,53 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="lg:hidden bg-white border-t border-secondary/5 px-6 pb-10 shadow-2xl animate-[fadeUp_0.4s_ease-out]">
-            <ul className="list-none flex flex-col gap-1 mb-8 pt-4">
+      </nav>
+
+      {/* Mobile Menu Overlay - Moved outside nav to ensure full-screen coverage */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-[999] bg-white lg:hidden flex flex-col animate-[fadeUp_0.3s_ease-out]">
+          {/* Header inside overlay to have a close button */}
+          <div className="flex items-center justify-between px-4 py-4 border-b border-secondary/5">
+            <a href="#" onClick={() => setMobileOpen(false)} className="text-2xl font-black tracking-tight text-secondary uppercase">
+              VITA<span className="text-primary">LINK</span>
+            </a>
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="bg-transparent border-none cursor-pointer text-secondary p-2"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Menu Links */}
+          <div className="grow overflow-y-auto px-6 py-8 flex flex-col justify-between">
+            <ul className="list-none flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="py-4 text-secondary/70 text-base font-semibold border-b border-secondary/5 flex items-center justify-between"
+                    className="py-4 text-secondary/70 text-lg font-semibold border-b border-secondary/5 flex items-center justify-between"
                   >
                     {link.label}
-                    <ArrowRight size={16} className="text-primary/40" />
+                    <ArrowRight size={18} className="text-primary/40" />
                   </a>
                 </li>
               ))}
             </ul>
-            <div className="flex flex-col gap-3">
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-primary justify-center w-full">
+
+            <div className="flex flex-col gap-4 pt-8 pb-10 mt-auto">
+              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-primary justify-center w-full py-4 text-base">
                 Start Free Trial
               </a>
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-outline-dark justify-center w-full">
+              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-outline-dark justify-center w-full py-4 text-base">
                 Book a Demo
               </a>
             </div>
           </div>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
   );
 }

@@ -15,7 +15,7 @@ export default function CtaSection() {
       </div>
 
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Left: Content */}
           <div className="flex-1 text-center lg:text-left">
             <motion.div
