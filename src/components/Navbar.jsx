@@ -53,19 +53,24 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
           </Link>
 
           {/* Desktop Nav Links */}
-          <ul className="hidden lg:flex gap-8 list-none">
-            {NAV_LINKS.map((link) => (
-              <li key={link.label}>
-                <Link
-                  to={link.href}
-                  className={`text-sm font-semibold transition-all duration-300 ${
-                    scrolled ? 'text-secondary/70 hover:text-primary' : 'text-secondary/70 hover:text-primary'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+          <ul className="hidden lg:flex gap-2 list-none">
+            {NAV_LINKS.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <li key={link.label}>
+                  <Link
+                    to={link.href}
+                    className={`text-sm font-semibold transition-all duration-300 px-4 py-2 rounded-full border whitespace-nowrap ${
+                      isActive 
+                        ? 'bg-primary/10 text-primary border-primary/20' 
+                        : 'text-secondary/70 hover:text-primary border-transparent hover:bg-primary/5'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Desktop CTAs */}
@@ -118,18 +123,25 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
           {/* Menu Links */}
           <div className="grow overflow-y-auto px-6 py-8 flex flex-col justify-between">
             <ul className="list-none flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="py-4 text-secondary/70 text-lg font-semibold border-b border-secondary/5 flex items-center justify-between"
-                  >
-                    {link.label}
-                    <ArrowRight size={18} className="text-primary/40" />
-                  </Link>
-                </li>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <li key={link.label}>
+                    <Link
+                      to={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`py-4 px-4 text-lg font-semibold flex items-center justify-between rounded-xl transition-all ${
+                        isActive 
+                          ? 'bg-primary/10 text-primary border border-primary/20' 
+                          : 'text-secondary/70 border-b border-secondary/5'
+                      }`}
+                    >
+                      {link.label}
+                      <ArrowRight size={18} className={isActive ? 'text-primary' : 'text-primary/40'} />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
 
             <div className="flex flex-col gap-4 pt-8 pb-10 mt-auto">
