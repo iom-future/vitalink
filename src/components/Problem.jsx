@@ -62,7 +62,8 @@ export default function Problem() {
       scrollTrigger: {
         trigger: ".problem-header",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
 
@@ -77,13 +78,14 @@ export default function Problem() {
         x: 0,
         y: 0,
         opacity: 1,
-        duration: 1.2,
+        duration: 1,
         stagger: 0.15,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".problem-card",
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
@@ -97,7 +99,8 @@ export default function Problem() {
       scrollTrigger: {
         trigger: ".pull-quote-bg",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
 
@@ -119,7 +122,7 @@ export default function Problem() {
   }, { scope: containerRef });
 
   return (
-    <section id="problem" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section id="problem" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
       {/* Header */}
       <div className="max-w-[1200px] mx-auto px-6 mb-10">
         <div className="problem-header text-center">

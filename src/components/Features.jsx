@@ -52,7 +52,8 @@ export default function Features() {
       scrollTrigger: {
         trigger: ".features-header",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
 
@@ -68,19 +69,20 @@ export default function Features() {
         y: 0,
         opacity: 1,
         duration: 1,
-        stagger: 0.1,
+        stagger: 0.15,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".feature-card",
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
   }, { scope: containerRef });
 
   return (
-    <section id="features" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section id="features" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="features-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">WHAT VITALINK DOES FOR YOU</span>

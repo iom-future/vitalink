@@ -16,27 +16,27 @@ const STEPS = [
     bgColor: 'bg-emerald-100',
     iconColor: 'text-emerald-500',
     dotColor: 'bg-emerald-500',
-    description: 'Our network of FDA-ready IoT wearables streams continuous biometric data 24/7. No buttons to press. No readings to log. Just a constant picture of how your body is actually doing.',
+    description: 'Our network of FDA-ready IoT wearables — glucose monitors, cardiac patches, blood pressure sensors, and smart rings — streams continuous biometric data 24 hours a day, 7 days a week. No buttons to press. No readings to log. Just a constant, unbroken picture of how your body is actually doing.',
   },
   {
     id: 'vitaai',
     eyebrow: 'VitaAI Clinical Intelligence',
-    title: 'Your Personal Health AI. Working Every Second.',
+    title: 'Your Personal Health AI. Working Every Second You Breathe.',
     icon: <Brain size={32} />,
     bgColor: 'bg-blue-100',
     iconColor: 'text-blue-500',
     dotColor: 'bg-blue-500',
-    description: "Vitalink's AI engine analyses thousands of biometric data points in real time, detecting subtle shifts in health patterns that precede clinical events.",
+    description: "Vitalink's AI engine analyses thousands of biometric data points in real time, detecting subtle shifts in health patterns that precede clinical events. When a concern is identified, the right clinician is alerted immediately — with a full contextual summary and a recommended course of action. Faster decisions. Better outcomes.",
   },
   {
     id: 'vitachain',
     eyebrow: 'VitaChain Health Record',
-    title: 'Your Health History. Owned By You.',
+    title: 'Your Health History. Owned By You — Not a Hospital.',
     icon: <Link size={32} />,
     bgColor: 'bg-violet-100',
     iconColor: 'text-violet-500',
     dotColor: 'bg-violet-500',
-    description: 'Every reading, every alert, every clinical note is stored in a patient-owned blockchain health wallet — encrypted, immutable, and fully under your control.',
+    description: 'Every reading, every alert, every clinical note is stored in a patient-owned blockchain health wallet — encrypted, immutable, and fully under your control. Share access with any clinician in seconds. Revoke it just as fast. And for the first time, receive micro-payments when your anonymized data contributes to medical research — because your health story has value, and you should benefit from it.',
   },
   {
     id: 'vitadash',
@@ -46,7 +46,7 @@ const STEPS = [
     bgColor: 'bg-cyan-100',
     iconColor: 'text-cyan-500',
     dotColor: 'bg-cyan-500',
-    description: 'Clinicians and care teams access a live dashboard showing real-time patient vitals, AI-generated risk scores, trend analysis, and smart alert queues.',
+    description: 'Clinicians and care teams access a live dashboard showing real-time patient vitals, AI-generated risk scores, trend analysis, and smart alert queues — prioritized by urgency so the most critical patients always rise to the top. Integrates directly with existing EHR systems via FHIR-compliant APIs. No workflow disruption. Just better information',
   },
 ];
 
@@ -113,7 +113,8 @@ export default function HowItWorks() {
       scrollTrigger: {
         trigger: ".hiw-header",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
 
@@ -134,7 +135,8 @@ export default function HowItWorks() {
         scrollTrigger: {
           trigger: ".step-card",
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
@@ -152,7 +154,8 @@ export default function HowItWorks() {
         scrollTrigger: {
           trigger: ".convergence-banner",
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       });
     });
@@ -166,13 +169,14 @@ export default function HowItWorks() {
       scrollTrigger: {
         trigger: ".convergence-tagline",
         start: "top 90%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
   }, { scope: containerRef });
 
   return (
-    <section id="how-it-works" ref={containerRef} className="py-16 md:py-24 lg:py-32 bg-teal-light/30 overflow-hidden">
+    <section id="how-it-works" ref={containerRef} className="pb-16 md:pb-24 lg:pb-32 overflow-x-clip">
       <div className="max-w-[1240px] mx-auto ">
         <div className="hiw-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">How Vitalink Works</span>

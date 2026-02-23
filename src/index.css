@@ -27,17 +27,18 @@
 }
 
 /* ── Base ───────────────────────────────────────────── */
-html {
+html, body, #root {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip; 
+  width: 100%;
 }
 
 body {
   font-family: var(--font-body);
   color: var(--color-text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
   background-color: #FFFFFF;
 }
 

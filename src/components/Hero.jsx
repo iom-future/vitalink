@@ -76,12 +76,12 @@ export default function Hero({ bannerVisible }) {
           HIPAA-certified • Trusted by physicians, hospital networks, and research institutions • Built with patients — not just for them
         </p>
 
-        <div className="hero-btns opacity-0 flex flex-col sm:flex-row gap-5 justify-center mb-6">
-          <Link to="/pricing" className="btn-teal sm:w-[40%] lg:w-[30%] justify-center group px-10">
+        <div className="hero-btns opacity-0 flex flex-col md:flex-row gap-5 justify-center mb-6">
+          <Link to="/pricing" className="btn-teal md:w-[40%] lg:w-[30%] justify-center group px-10">
             Start Monitoring Now 
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-          <Link to="/how-it-works" className="btn-outline-dark sm:w-[40%] lg:w-[30%] justify-center group px-10">
+          <Link to="/how-it-works" className="btn-outline-dark md:w-[40%] lg:w-[30%] justify-center group px-10">
             <Play size={18} className="fill-current" />
             See It In Action
           </Link>

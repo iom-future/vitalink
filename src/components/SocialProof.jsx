@@ -55,7 +55,8 @@ export default function SocialProof() {
       scrollTrigger: {
         trigger: ".proof-header",
         start: "top 85%",
-        toggleActions: "play none none reverse",
+        once: true,
+        toggleActions: "play none none none",
       }
     });
 
@@ -71,12 +72,13 @@ export default function SocialProof() {
         y: 0,
         opacity: 1,
         duration: 1,
-        stagger: 0.1,
+        stagger: 0.15,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".stat-card",
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
@@ -92,20 +94,21 @@ export default function SocialProof() {
         x: 0,
         y: 0,
         opacity: 1,
-        duration: 1.2,
+        duration: 1,
         stagger: 0.15,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".testimonial-card",
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
   }, { scope: containerRef });
 
   return (
-    <section id="social-proof" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-hidden">
+    <section id="social-proof" ref={containerRef} className="py-16 md:py-24 lg:py-32 overflow-x-clip">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="proof-header text-center mb-10 lg:mb-16 px-4">
           <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>

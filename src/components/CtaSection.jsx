@@ -17,20 +17,21 @@ export default function CtaSection() {
         x: 0, 
         y: 0, 
         opacity: 1, 
-        duration: 1.2, 
-        stagger: 0.2,
+        duration: 1, 
+        stagger: 0.15,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".cta-content", // Unified trigger
           start: "top 85%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
   }, { scope: containerRef });
 
   return (
-    <section id="cta" ref={containerRef} className="py-16 md:py-24 relative overflow-hidden">
+    <section id="cta" ref={containerRef} className="py-16 md:py-24 relative overflow-x-clip">
       {/* Urgency Banner */}
       <div className="bg-primary py-3 mb-8 sm:mb-12">
         <div className="max-w-[1200px] mx-auto px-6">

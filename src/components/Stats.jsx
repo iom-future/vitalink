@@ -39,14 +39,15 @@ function Stats() {
         scrollTrigger: {
           trigger: ".stat-item",
           start: "top 95%",
-          toggleActions: "play none none reverse",
+          once: true,
+          toggleActions: "play none none none",
         }
       }
     );
   }, { scope: containerRef });
 
   return (
-    <div className='hero-stats relative z-20' ref={containerRef}>
+    <div className='hero-stats relative z-20 overflow-x-clip' ref={containerRef}>
       <div className="mx-auto -translate-y-8 relative w-[90%] max-w-[1200px]">
         <div 
           ref={ref} 
