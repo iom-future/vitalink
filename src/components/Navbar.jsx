@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import Banner from './Banner';
 
 const NAV_LINKS = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'For Patients', href: '#problem' },
-  { label: 'For Clinicians', href: '#features' },
-  { label: 'For Hospitals', href: '#social-proof' },
-  { label: 'Research', href: '#social-proof' },
-  { label: 'Pricing', href: '#cta' },
+  { label: 'How It Works', href: '/how-it-works' },
+  { label: 'For Patients', href: '/for-patients' },
+  { label: 'For Clinicians', href: '/for-clinicians' },
+  { label: 'For Hospitals', href: '/for-hospitals' },
+  { label: 'Research', href: '/research' },
+  { label: 'Pricing', href: '/pricing' },
 ];
 
 export default function Navbar({ bannerVisible, onBannerClose }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -41,34 +47,34 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
       >
         <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-between ">
           {/* Logo */}
-          <a href="#" className={`text-2xl font-black tracking-tight transition-colors duration-500 text-secondary uppercase`}>
+          <Link to="/" className={`text-2xl font-black tracking-tight transition-colors duration-500 text-secondary uppercase`}>
             VITA<span className="text-primary">LINK</span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <ul className="hidden lg:flex gap-8 list-none">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   className={`text-sm font-semibold transition-all duration-300 ${
                     scrolled ? 'text-secondary/70 hover:text-primary' : 'text-secondary/70 hover:text-primary'
                   }`}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#cta" className={`btn-primary px-6! py-3! text-sm! font-bold`}>
+            <Link to="/pricing" className={`btn-primary px-6! py-3! text-sm! font-bold`}>
               Start Free Trial
-            </a>
-            <a href="#cta" className={`btn-outline-dark px-6! py-3! text-sm! font-bold ${scrolled ? 'border-secondary/20! text-secondary! hover:bg-secondary! hover:text-white!' : ''}`}>
+            </Link>
+            <Link to="/pricing" className={`btn-outline-dark px-6! py-3! text-sm! font-bold ${scrolled ? 'border-secondary/20! text-secondary! hover:bg-secondary! hover:text-white!' : ''}`}>
               Book a Demo
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
@@ -88,9 +94,9 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
         <div className="fixed inset-0 z-[999] bg-white lg:hidden flex flex-col animate-[fadeUp_0.3s_ease-out]">
           {/* Header inside overlay to have a close button */}
           <div className="flex items-center justify-between px-4 py-4 border-b border-secondary/5">
-            <a href="#" onClick={() => setMobileOpen(false)} className="text-2xl font-black tracking-tight text-secondary uppercase">
+            <Link to="/" onClick={() => setMobileOpen(false)} className="text-2xl font-black tracking-tight text-secondary uppercase">
               VITA<span className="text-primary">LINK</span>
-            </a>
+            </Link>
             <button
               onClick={() => setMobileOpen(false)}
               className="bg-transparent border-none cursor-pointer text-secondary p-2"
@@ -105,25 +111,25 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
             <ul className="list-none flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     onClick={() => setMobileOpen(false)}
                     className="py-4 text-secondary/70 text-lg font-semibold border-b border-secondary/5 flex items-center justify-between"
                   >
                     {link.label}
                     <ArrowRight size={18} className="text-primary/40" />
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
 
             <div className="flex flex-col gap-4 pt-8 pb-10 mt-auto">
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-primary justify-center w-full py-4 text-base">
+              <Link to="/pricing" onClick={() => setMobileOpen(false)} className="btn-primary justify-center w-full py-4 text-base">
                 Start Free Trial
-              </a>
-              <a href="#cta" onClick={() => setMobileOpen(false)} className="btn-outline-dark justify-center w-full py-4 text-base">
+              </Link>
+              <Link to="/pricing" onClick={() => setMobileOpen(false)} className="btn-outline-dark justify-center w-full py-4 text-base">
                 Book a Demo
-              </a>
+              </Link>
             </div>
           </div>
         </div>
