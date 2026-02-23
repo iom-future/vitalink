@@ -81,9 +81,7 @@ export default function Features() {
             <motion.div
               key={index}
               variants={item}
-              className={`p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden ${
-                index === 0 || index === 3 || index === 4 ? 'lg:col-span-2' : 'lg:col-span-1'
-              }`}
+              className="p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
             >
               {/* Background Icon Effect */}
               <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">

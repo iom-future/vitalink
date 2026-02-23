@@ -80,7 +80,7 @@ export default function CtaSection() {
                   </select>
                   <input type="number" placeholder="No. of Patients to Monitor" className="w-full px-5 py-3.5 rounded-xl border border-primary/10 focus:border-primary focus:ring-4 focus:ring-primary/5 outline-none transition-all placeholder:text-text-muted/40 bg-white/50" />
                 </div>
-                <button type="submit" className="btn-teal w-full justify-center group mt-2 h-14 text-base font-black uppercase tracking-widest">
+                <button type="submit" className="btn-teal w-full justify-center group mt-2 h-14 text-sm sm:text-base font-semibold tracking-widest">
                   Schedule My Demo
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform ml-2" />
                 </button>

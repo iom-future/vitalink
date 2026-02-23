@@ -28,10 +28,10 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
         className={`transition-all duration-500 py-4 ${
           scrolled
             ? 'bg-white/95 backdrop-blur-xl shadow-clinical py-2'
-            : 'bg-white py-6'
+            : 'bg-white py-4'
         }`}
       >
-        <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between ">
+        <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-between ">
           {/* Logo */}
           <a href="#" className={`text-2xl font-black tracking-tight transition-colors duration-500 text-secondary uppercase`}>
             VITA<span className="text-primary">LINK</span>

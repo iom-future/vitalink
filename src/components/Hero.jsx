@@ -29,7 +29,7 @@ import Threads from './Threads';
 
 export default function Hero({ bannerVisible }) {
   return (
-    <section id="hero" className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[130px]' : 'pt-[80px]'}`}>
+    <section id="hero" className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[170px]' : 'pt-[80px]'}`}>
       <div className="absolute inset-0 pointer-events-none opacity-60">
       
         {/* Soft bottom fade to blend with next section */}
