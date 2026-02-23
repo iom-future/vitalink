@@ -41,28 +41,41 @@ const PULL_STATS = [
   },
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 0) => ({ 
+const slideIn = (direction = 'left', i = 0) => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -25 : 25 
+  },
+  visible: { 
     opacity: 1, 
-    y: 0, 
-    transition: { delay: i * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-  }),
-};
+    x: 0,
+    transition: { 
+      delay: i * 0.1, 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  },
+});
 
 export default function Problem() {
   const { ref: statsRef, inView: statsInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.2,
   });
 
   return (
-    <section id="problem" className="py-16 md:py-24 lg:py-32 ">
+    <section id="problem" className="py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Header */}
       <div className="max-w-[1200px] mx-auto px-6 mb-10">
         <motion.div 
           className="text-center"
-          variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+          }}
         >
           <span className="eyebrow-red">The Problem We Exist To Solve</span>
           <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
@@ -84,7 +97,10 @@ designed for continuous care. Vitalink is.
             <motion.div
               key={p.title}
               className="p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(239,68,68,0.1)_0,rgba(239,68,68,0)_50%,rgba(239,68,68,0)_100%)] hover:border-red-500/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
-              variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={i}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
             >
               {/* Background Icon Effect */}
               <div className="absolute -bottom-10 -right-10 text-red-500 opacity-[0.07] group-hover:opacity-[0.1] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none">
@@ -105,15 +121,25 @@ designed for continuous care. Vitalink is.
         <motion.div
           ref={statsRef}
           className="bg-black/95 backdrop-blur-2xl shadow-2xl rounded-2xl py-12 md:py-16 px-10 md:px-24 text-white border border-white/10 relative overflow-hidden"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+          }}
         >
           <div className="absolute top-0 right-0 w-96 h-96 bg-red-500/10 rounded-full -mr-32 -mt-32 blur-3xl"></div>
           <div className="relative z-10 space-y-10">
             {PULL_STATS.map((s, i) => (
-              <div key={i} className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 border-b border-white/5 pb-10 last:border-none">
+              <motion.div 
+                key={i} 
+                className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 border-b border-white/5 pb-10 last:border-none"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
+              >
                 <span className="text-accent font-black text-4xl md:text-5xl font-mono tracking-tighter shrink-0">
                   {s.number ? (
                     <Counter 
@@ -127,11 +153,17 @@ designed for continuous care. Vitalink is.
                   )}
                 </span>
                 <p className="text-white/80 text-lg md:text-xl leading-relaxed">{s.text}</p>
-              </div>
+              </motion.div>
             ))}
-            <p className="text-white font-black text-3xl md:text-4xl pt-8 tracking-tight leading-tight">
+            <motion.p 
+              className="text-white font-black text-3xl md:text-4xl pt-8 tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
               The technology is ready. <br className="sm:hidden" /> The platform is Vitalink.
-            </p>
+            </motion.p>
           </div>
         </motion.div>
       </div>

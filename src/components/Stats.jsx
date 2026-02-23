@@ -10,6 +10,22 @@ const STATS = [
   { number: 3.2, suffix: 'x', decimals: 1, label: 'Reduction in Hospital Readmissions' },
 ];
 
+const slideIn = (direction = 'left', i = 0) => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -20 : 20 
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      delay: i * 0.1, 
+      duration: 1, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  },
+});
+
 function Stats() {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -17,18 +33,22 @@ function Stats() {
   });
 
   return (
-    <div className='hero-stats'>
-      <div className="mx-auto -translate-y-6  relative z-10 w-[90%]">
-        <div ref={ref} className="max-w-[1200px] mx-auto grid bg-black/90 backdrop-blur-2xl shadow-2xl hover:shadow-2xl hover:shadow-black/50 rounded-2xl grid-cols-2 lg:grid-cols-4 border border-white/10 relative overflow-hidden">
+    <div className='hero-stats relative z-20'>
+      <div className="mx-auto -translate-y-8 relative w-[90%] max-w-[1200px]">
+        <div 
+          ref={ref} 
+          className="grid bg-black/90 backdrop-blur-2xl shadow-2xl hover:shadow-black/50 rounded-2xl grid-cols-2 lg:grid-cols-4 border border-white/10 relative overflow-hidden transition-all duration-500"
+        >
           {STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className={`relative z-10 text-center py-6 md:py-10 px-6 `}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 * i, duration: 0.8 }}
+            <motion.div 
+              key={i} 
+              className="text-center py-8 md:py-12 group"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
             >
-              <div className="font-mono text-4xl md:text-5xl font-black text-accent mb-3">
+              <div className="font-mono text-4xl md:text-5xl font-black text-accent mb-2 group-hover:scale-110 transition-transform duration-500">
                 <Counter 
                   value={stat.number} 
                   decimals={stat.decimals || 0} 
@@ -37,7 +57,7 @@ function Stats() {
                   inView={inView} 
                 />
               </div>
-              <div className="text-white/60 text-[0.65rem] md:text-[0.75rem] font-bold uppercase tracking-[0.25em] leading-relaxed">
+              <div className="text-[0.6rem] md:text-[0.7rem] font-black text-white/50 uppercase tracking-[0.25em] leading-tight group-hover:text-accent transition-colors">
                 {stat.label}
               </div>
             </motion.div>

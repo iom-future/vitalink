@@ -34,20 +34,40 @@ const TESTIMONIALS = [
 
 const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
+const slideIn = (direction = 'left', i = 0) => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -25 : 25 
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      delay: i * 0.1, 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  },
+});
+
 export default function SocialProof() {
   const { ref: statsRef, inView: statsInView } = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.2,
   });
 
   return (
-    <section id="social-proof" className="py-16 md:py-24 lg:py-32 ">
+    <section id="social-proof" className="py-16 md:py-24 lg:py-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-10 lg:mb-16 px-4">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } }
+            }}
           >
             <span className="eyebrow">WHAT CLINICIANS AND PATIENTS ARE SAYING</span>
             <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
@@ -64,9 +84,10 @@ export default function SocialProof() {
             <motion.div 
               key={i}
               className="p-6 rounded-2xl bg-slate-200/50 border border-secondary/5 text-center shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] relative overflow-hidden group hover:border-primary/20 transition-all duration-500"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: i * 0.1, duration: 0.8 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/60 rounded-full -mr-10 -mt-10 blur-2xl transition-opacity group-hover:opacity-100 opacity-60"></div>
               
@@ -92,10 +113,10 @@ export default function SocialProof() {
             <motion.div
               key={i}
               className="flex flex-col items-start p-2"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 1 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={slideIn(i % 2 === 0 ? 'left' : 'right', i)}
             >
               <div className="mb-10 p-4 rounded-2xl bg-primary/5 text-primary">
                 <Quote size={20} className="fill-current opacity-20" />

@@ -18,45 +18,45 @@ export default function CtaSection() {
         <div className="flex flex-col lg:flex-row gap-8 items-center">
           {/* Left: Content */}
           <div className="flex-1 text-center lg:text-left">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
-                Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
-              </h2>
-              <p className="text-text-muted text-base md:text-lg mb-12 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
-                Whether you are a clinician, hospital network, or patient — Vitalink was built for you. Setup takes less than 24 hours. The first early warning could come within days.
-              </p>
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+                  Better Care Starts With Better Information. <br className="hidden md:block" /> Start Monitoring Today.
+                </h2>
+                <p className="text-text-muted text-base md:text-lg mb-12 leading-relaxed max-w-[650px] mx-auto lg:mx-0">
+                  Whether you are a clinician, hospital network, or patient — Vitalink was built for you. Setup takes less than 24 hours. The first early warning could come within days.
+                </p>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-16">
-                <div className="flex items-center gap-3 text-secondary font-bold">
-                  <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                    <Mail size={18} />
+                <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-16">
+                  <div className="flex items-center gap-3 text-secondary font-bold">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                      <Mail size={18} />
+                    </div>
+                    hello@vitalink.io
                   </div>
-                  hello@vitalink.io
-                </div>
-                <div className="flex items-center gap-3 text-secondary font-bold">
-                  <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
-                    <Phone size={18} />
+                  <div className="flex items-center gap-3 text-secondary font-bold">
+                    <div className="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary">
+                      <Phone size={18} />
+                    </div>
+                    +1 (650) 000-VITA
                   </div>
-                  +1 (650) 000-VITA
                 </div>
-              </div>
-            </motion.div>
-          </div>
+              </motion.div>
+            </div>
 
-          {/* Right: Modern Form Card */}
-          <div className="flex-1 w-full max-w-[550px]">
-            <motion.div
-              className="glass-card-light p-8 md:p-10 relative overflow-hidden"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            {/* Right: Modern Form Card */}
+            <div className="flex-1 w-full max-w-[550px]">
+              <motion.div
+                className="glass-card-light p-8 md:p-10 relative overflow-hidden"
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              >
               <h3 className="text-2xl font-bold mb-8 tracking-tight">Request Your Free Clinical Demo</h3>
               <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -9,7 +9,7 @@ import CtaSection from '../components/CtaSection';
 
 export default function Home({ bannerVisible }) {
   return (
-    <>
+    <div className='overflow-x-hidden'>
       <Hero bannerVisible={bannerVisible} />
       <Stats />
       <Problem />
@@ -17,6 +17,6 @@ export default function Home({ bannerVisible }) {
       <Features />
       <SocialProof />
       <CtaSection />
-    </>
+    </div>
   );
 }

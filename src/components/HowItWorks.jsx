@@ -46,7 +46,23 @@ const STEPS = [
   },
 ];
 
-function StepCard({ step, isCarousel = false }) {
+const slideIn = (direction = 'left', i = 0) => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -25 : 25 
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      delay: i * 0.1, 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  },
+});
+
+function StepCard({ step, index, isCarousel = false }) {
   const cardRef = useRef(null);
   const { scrollXProgress } = useScroll({
     target: cardRef,
@@ -93,9 +109,10 @@ function StepCard({ step, isCarousel = false }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={slideIn(index % 2 === 0 ? 'left' : 'right', index)}
       className="h-full"
     >
       {CardContent}
@@ -176,8 +193,8 @@ export default function HowItWorks() {
 
         {/* Grid for lg+ */}
         <div className="hidden lg:grid grid-cols-2 gap-12 lg:gap-16 px-6">
-          {STEPS.map((step) => (
-            <StepCard key={step.id} step={step} />
+          {STEPS.map((step, idx) => (
+            <StepCard key={step.id} step={step} index={idx} />
           ))}
         </div>
 

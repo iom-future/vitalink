@@ -35,20 +35,21 @@ const FEATURES = [
   },
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+const slideIn = (direction = 'left', i = 0) => ({
+  hidden: { 
+    opacity: 0, 
+    x: direction === 'left' ? -25 : 25 
   },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
-};
+  show: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      delay: i * 0.1, 
+      duration: 0.8, 
+      ease: [0.22, 1, 0.36, 1] 
+    } 
+  },
+});
 
 export default function Features() {
   return (
@@ -70,17 +71,14 @@ export default function Features() {
           </motion.div>
         </div>
 
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {FEATURES.map((feature, index) => (
             <motion.div
               key={index}
-              variants={item}
+              variants={slideIn(index % 2 === 0 ? 'left' : 'right', index)}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-50px" }}
               className="p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden"
             >
               {/* Background Icon Effect */}
@@ -103,7 +101,7 @@ export default function Features() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
