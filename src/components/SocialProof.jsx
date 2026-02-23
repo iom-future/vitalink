@@ -34,30 +34,29 @@ const LOGOS = ['EPIC', 'CERNER', 'ATHENA', 'MAYO CLINIC', 'CLEVELAND CLINIC'];
 
 export default function SocialProof() {
   return (
-    <section id="social-proof" className="py-24 lg:py-40 ">
+    <section id="social-proof" className="py-32 lg:py-48 ">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-24">
+        <div className="text-center mb-16 lg:mb-32 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <span className="eyebrow">Real Impact</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold mb-8 leading-[1.1] tracking-tight">
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
               Evidence-Based Confidence.
             </h2>
-            <p className="text-text-muted text-xl max-w-[700px] mx-auto leading-relaxed">
+            <p className="text-text-muted text-lg md:text-xl max-w-[850px] mx-auto leading-relaxed">
               Medicine changes when you can see what is really happening. Join the network of clinicians redefining the standard of care.
             </p>
           </motion.div>
         </div>
 
-        {/* Stats Row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-32">
           {PROOF_STATS.map((stat, i) => (
             <motion.div 
               key={i}
-              className="p-8 rounded-[32px] bg-teal-light/20 border border-primary/5 text-center"
+              className="p-8 rounded-2xl bg-teal-light/20 border border-primary/5 text-center"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -70,7 +69,7 @@ export default function SocialProof() {
         </div>
 
         {/* Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24">
           {TESTIMONIALS.map((t, i) => (
             <motion.div
               key={i}
@@ -80,24 +79,24 @@ export default function SocialProof() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 1 }}
             >
-              <div className="mb-8 p-3 rounded-2xl bg-primary/5 text-primary">
+              <div className="mb-10 p-4 rounded-2xl bg-primary/5 text-primary">
                 <Quote size={20} className="fill-current opacity-20" />
               </div>
-              <p className="text-secondary text-xl font-medium leading-relaxed mb-8 flex-grow tracking-tight">
+              <p className="text-secondary text-xl font-black leading-relaxed mb-10 flex-grow tracking-tight">
                 "{t.quote}"
               </p>
               <div className="flex flex-col">
-                <span className="font-bold text-secondary text-lg">{t.name}</span>
-                <span className="text-primary font-bold text-sm tracking-tight">{t.role}</span>
-                <span className="text-text-muted text-xs font-semibold uppercase tracking-wider">{t.org}</span>
+                <span className="font-black text-secondary text-xl">{t.name}</span>
+                <span className="text-primary font-bold text-sm tracking-tight mb-1">{t.role}</span>
+                <span className="text-text-muted text-xs font-bold uppercase tracking-widest leading-none">{t.org}</span>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Logo Strip */}
-        <div className="pt-24 border-t border-secondary/5 text-center">
-          <p className="text-text-muted/40 text-[0.7rem] font-black tracking-[0.25em] uppercase mb-16 px-6">
+        <div className="pt-32 border-t border-secondary/5 text-center">
+          <p className="text-text-muted/40 text-[0.65rem] font-bold tracking-[0.3em] uppercase mb-16 px-6">
             Trusted Integration partners 
           </p>
           <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale saturate-0">

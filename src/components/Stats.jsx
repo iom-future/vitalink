@@ -15,16 +15,18 @@ function Stats() {
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.number}
-              className={`relative z-10 text-center py-6 md:py-8 px-4 `}
+              className={`relative z-10 text-center py-8 md:py-12 px-6 `}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
             >
-              <div className="font-mono text-3xl md:text-4xl font-black text-accent mb-2">
+              <div className="font-mono text-4xl md:text-5xl font-black text-accent mb-3">
                 {stat.number}
               </div>
-              <div className="text-white/80 text-[0.7rem] font-medium text-sm md:text-base  tracking-[0.2em]">{stat.label}</div>
+              <div className="text-white/60 text-[0.65rem] md:text-[0.75rem] font-bold uppercase tracking-[0.25em] leading-relaxed">
+                {stat.label}
+              </div>
             </motion.div>
           ))}
         </div>

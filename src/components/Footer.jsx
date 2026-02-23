@@ -33,15 +33,15 @@ const FOOTER_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary text-white pt-24 pb-12 border-t border-white/5">
+    <footer className="bg-secondary text-white pt-32 pb-16 border-t border-white/5">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-32">
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <a href="#" className="text-3xl font-black tracking-tighter text-primary mb-8 block">
+            <a href="#" className="text-3xl font-black tracking-tighter text-primary mb-10 block">
               VITA<span className="text-white">LINK</span>
             </a>
-            <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
+            <p className="text-white/40 text-lg leading-relaxed mb-12 max-w-[340px] font-medium">
               The infrastructure for sovereign health. Connecting patients and clinicians via continuous, secure intelligence.
             </p>
             <div className="flex gap-6">
@@ -56,7 +56,7 @@ export default function Footer() {
           {/* Links */}
           {FOOTER_LINKS.map((group) => (
             <div key={group.title}>
-              <h4 className="text-sm font-black uppercase tracking-[0.2em] text-white/20 mb-8">{group.title}</h4>
+              <h4 className="text-[0.65rem] font-bold uppercase tracking-[0.25em] text-white/20 mb-10">{group.title}</h4>
               <ul className="space-y-4 list-none">
                 {group.links.map((link) => (
                   <li key={link.name}>
@@ -72,7 +72,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="flex items-center gap-2 text-white/30 text-xs font-bold uppercase tracking-widest">
               <MapPin size={14} className="text-primary/50" />

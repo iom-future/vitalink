@@ -45,25 +45,25 @@ export default function Hero({ bannerVisible }) {
         </motion.span>
 
         <motion.h1
-          className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-8 tracking-tight leading-[1.05]"
+          className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-10 tracking-tight leading-[1.05]"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}
         >
           Your Patient's Health, <br className="hidden sm:block" />
-          <span className="bg-gradient-to-r font-primary! from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
+          <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
             Monitored in Real Time.
           </span>
          
         </motion.h1>
 
         <motion.p
-          className="text-secondary/70 text-base md:text-2xl max-w-[720px] mx-auto mb-4 leading-relaxed font-medium"
+          className="text-secondary/80 text-lg md:text-2xl max-w-[800px] mx-auto mb-8 leading-relaxed font-medium"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2}
         >
-          Vitalink connects wearable IoT devices, AI-powered health analytics, and patient owned  block-chain health records into one seamless platform - giving clinicians the live insight they need and patients the privacy they deserve
+          Vitalink connects wearable IoT devices, AI-powered health analytics, and patient-owned blockchain health records into one seamless platform — giving clinicians the live insight they need and patients the privacy they deserve.
         </motion.p>
 
         <motion.p
-          className="font-primary text-secondary/50 text-[0.8rem] md:text-[0.95rem] max-w-[850px] mx-auto mb-10 leading-relaxed italic"
+          className="text-secondary/50 text-[0.85rem] md:text-[1rem] max-w-[850px] mx-auto mb-12 leading-relaxed italic"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={2.5}
         >
           HIPAA-certified • Trusted by physicians, hospital networks, and research institutions • Built with patients — not just for them

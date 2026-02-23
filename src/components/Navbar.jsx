@@ -25,15 +25,15 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
     <header className="fixed top-0 left-0 w-full z-50 transition-all duration-500  ">
       {!scrolled && bannerVisible && <Banner onClose={onBannerClose} />}
       <nav
-        className={`transition-all duration-500 py-3 ${
+        className={`transition-all duration-500 py-4 ${
           scrolled
-            ? 'bg-white/90 backdrop-blur-xl shadow-clinical  py-1'
-            : 'bg-white'
+            ? 'bg-white/95 backdrop-blur-xl shadow-clinical py-2'
+            : 'bg-white py-6'
         }`}
       >
         <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between ">
           {/* Logo */}
-          <a href="#" className={`text-2xl font-black tracking-tight transition-colors duration-500 ${scrolled ? 'text-secondary' : 'text-secondary'}`}>
+          <a href="#" className={`text-2xl font-black tracking-tight transition-colors duration-500 text-secondary uppercase`}>
             VITA<span className="text-primary">LINK</span>
           </a>
 
@@ -55,10 +55,10 @@ export default function Navbar({ bannerVisible, onBannerClose }) {
 
           {/* Desktop CTAs */}
           <div className="hidden lg:flex items-center gap-4">
-            <a href="#cta" className={`btn-primary px-6! py-2.5! text-sm! ${scrolled ? '' : ''}`}>
+            <a href="#cta" className={`btn-primary px-6! py-3! text-sm! font-bold`}>
               Start Free Trial
             </a>
-            <a href="#cta" className={`btn-outline-dark px-6! py-2.5! text-sm! ${scrolled ? 'border-secondary/20! text-secondary! hover:bg-secondary! hover:text-white!' : ''}`}>
+            <a href="#cta" className={`btn-outline-dark px-6! py-3! text-sm! font-bold ${scrolled ? 'border-secondary/20! text-secondary! hover:bg-secondary! hover:text-white!' : ''}`}>
               Book a Demo
             </a>
           </div>

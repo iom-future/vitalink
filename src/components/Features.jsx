@@ -52,19 +52,19 @@ const item = {
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 lg:py-40 ">
+    <section id="features" className="py-32 lg:py-48 ">
       <div className="max-w-[1200px] mx-auto px-6">
-        <div className="text-center mb-24">
+        <div className="text-center mb-16 lg:mb-32 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <span className="eyebrow">Medical Precision</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-bold mb-8 leading-[1.1] tracking-tight">
-              Designed For Safety. Built For Scale.
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight text-secondary">
+              Designed For Safety. <br className="sm:hidden" /> Built For Scale.
             </h2>
-            <p className="text-text-muted text-xl max-w-[800px] mx-auto leading-relaxed">
+            <p className="text-text-muted text-lg md:text-xl max-w-[850px] mx-auto leading-relaxed">
               Vitalink replaces fragmented, reactive care with a unified clinical intelligence layer that bridges the gap between hospital and home.
             </p>
           </motion.div>
@@ -81,7 +81,7 @@ export default function Features() {
             <motion.div
               key={index}
               variants={item}
-              className={`p-10 rounded-[32px] relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden ${
+              className={`p-12 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(0,163,255,0.13)_0,rgba(0,163,255,0)_50%,rgba(0,163,255,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden ${
                 index === 0 || index === 3 || index === 4 ? 'lg:col-span-2' : 'lg:col-span-1'
               }`}
             >
@@ -91,10 +91,10 @@ export default function Features() {
               </div>
 
               <div className="relative z-10 h-full flex flex-col">
-                <h3 className="text-2xl font-semibold mb-4 tracking-tight text-secondary group-hover:text-primary transition-colors font-primary">
+                <h3 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-secondary group-hover:text-primary transition-colors leading-[1.1]">
                   {feature.title}
                 </h3>
-                <p className="text-text-muted text-base leading-relaxed mb-6">
+                <p className="text-text-muted text-base md:text-lg leading-relaxed mb-8">
                   {feature.description}
                 </p>
                 <div className="mt-auto">

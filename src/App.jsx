@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="min-h-screen  ">
       <Navbar bannerVisible={bannerVisible} onBannerClose={() => setBannerVisible(false)} />
-      <main className='bg-[#F8F8FA]'>
+      <main className='bg-[#FAFAFA]'>
         <Hero bannerVisible={bannerVisible} />
         <Stats />
         <Problem />

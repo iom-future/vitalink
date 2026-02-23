@@ -57,7 +57,7 @@ function StepCard({ step, isCarousel = false }) {
   const scale = useTransform(scrollXProgress, [0, 0.5, 1], [1, 1.05, 1]);
 
   const CardContent = (
-    <div className={`${step.bgColor} rounded-[40px] p-6 md:p-10 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
+    <div className={`${step.bgColor} rounded-2xl p-8 md:p-12 shadow-[inset_0_2px_10px_rgba(255,255,255,0.8)] h-full border border-secondary/5 relative overflow-hidden flex flex-col group hover:border-primary/20 transition-all duration-500`}>
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/40 rounded-full -mr-20 -mt-20 blur-3xl transition-opacity group-hover:opacity-100 opacity-60"></div>
       
       {/* Background Icon Effect - Moved to Top Right & More Visible */}
@@ -66,10 +66,10 @@ function StepCard({ step, isCarousel = false }) {
       </div>
 
       <div className="relative z-10 flex flex-col h-full">
-        <div className="text-[0.65rem] font-bold tracking-[0.25em] uppercase text-secondary/60 mb-3">
+        <div className="text-[0.65rem] font-bold tracking-[0.25em] uppercase text-secondary/60 mb-4">
           {step.eyebrow}
         </div>
-        <h3 className="text-2xl font-bold mb-4 tracking-tight text-secondary font-primary leading-tight">
+        <h3 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-secondary leading-[1.1]">
           {step.title}
         </h3>
         <p className="text-secondary/80 text-base leading-relaxed mt-auto">
@@ -118,19 +118,19 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-16 md:py-24 lg:py-40 bg-teal-light/30 overflow-hidden">
+    <section id="how-it-works" className="py-20 md:py-32 lg:py-48 bg-teal-light/30 overflow-hidden">
       <div className="max-w-[1240px] mx-auto ">
-        <div className="text-center mb-16 lg:mb-24 px-4">
+        <div className="text-center mb-16 lg:mb-32 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <span className="eyebrow">How Vitalink Works</span>
-            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-semibold mb-8 leading-[1.1] tracking-tight font-primary px-6">
-              Continuous Care. Complete Transparency. Total Control.
+            <h2 className="text-[clamp(2.5rem,5vw,3.5rem)] font-black mb-10 leading-[1.05] tracking-tight px-6 text-secondary">
+              Continuous Care. <br className="sm:hidden" /> Complete Transparency. <br className="sm:hidden" /> Total Control.
             </h2>
-            <p className="text-text-muted text-base max-w-[750px] mx-auto leading-relaxed">
+            <p className="text-text-muted text-lg md:text-xl max-w-[800px] mx-auto leading-relaxed">
               Vitalink is built on three layers that work together seamlessly — IoT wearables that capture health data around the
               clock, AI models that turn raw readings into meaningful clinical insight, and a patient-owned blockchain health record
               that keeps data secure, private, and always accessible.
@@ -175,7 +175,7 @@ export default function HowItWorks() {
         </div>
 
         {/* Grid for lg+ */}
-        <div className="hidden lg:grid grid-cols-2 gap-8 lg:gap-12 px-6">
+        <div className="hidden lg:grid grid-cols-2 gap-12 lg:gap-16 px-6">
           {STEPS.map((step) => (
             <StepCard key={step.id} step={step} />
           ))}
