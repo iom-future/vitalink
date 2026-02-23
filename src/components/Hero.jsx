@@ -48,7 +48,7 @@ export default function Hero({ bannerVisible }) {
           className="text-[clamp(2.5rem,6vw,4.5rem)] text-secondary font-black max-w-[1000px] mx-auto mb-8 tracking-tight leading-[1.05]"
           variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }} custom={1}
         >
-          Your Patient's Health, <br xlassName="hidden sm:block" />
+          Your Patient's Health, <br className="hidden sm:block" />
           <span className="bg-gradient-to-r font-primary! from-primary via-accent to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-[gradientShift_8s_linear_infinite]">
             Monitored in Real Time.
           </span>

@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Watch, Brain, Link, LayoutDashboard, ChevronLeft, ChevronRight, Hand } from 'lucide-react';
+import { Watch, Brain, Link, LayoutDashboard, ChevronLeft, ChevronRight, Hand, Plus } from 'lucide-react';
+import StarBorder from './StarBorder';
 
 const STEPS = [
   {
@@ -181,22 +182,107 @@ export default function HowItWorks() {
         </div>
 
         {/* Convergence Banner */}
-        <motion.div 
-          className="mt-24 p-1 rounded-full bg-gradient-to-r from-primary/5 via-primary/20 to-primary/5"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-white rounded-full py-8 px-12 flex flex-col md:flex-row items-center justify-center gap-6 text-center">
-            <span className="flex items-center gap-2 text-primary font-black tracking-tighter text-2xl uppercase">
-              IoT <span className="text-secondary/20 font-light">+</span> AI <span className="text-secondary/20 font-light">+</span> BLOCKCHAIN
-            </span>
-            <span className="hidden md:block w-px h-8 bg-secondary/10"></span>
-            <p className="text-secondary font-bold text-lg tracking-tight italic opacity-70">
-              Not three separate tools. One connected intelligence layer.
-            </p>
+        <div className="mt-12 md:mt-24 relative px-6">
+          <div className="max-w-4xl mx-auto">
+            <StarBorder color="#044e47" speed="6s" thickness={8} className="shadow-2xl">
+              <div className="bg-black/95 backdrop-blur-2xl rounded-[20px] p-8 md:p-12">
+                {/* Icons Row */}
+                <div className="flex flex-col items-center justify-center gap-6 sm:gap-12">
+                  <div className="flex items-center justify-center gap-4 sm:gap-12">
+                    {/* IoT */}
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      className="flex flex-col items-center gap-4 group"
+                    >
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-emerald-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(16,185,129,0.15)] border border-emerald-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(16,185,129,0.3)] transition-all duration-500">
+                        <Watch size={40} strokeWidth={1.5} className="md:size-12" />
+                      </div>
+                      <div className="text-center">
+                        <span className="block font-black text-xl md:text-2xl tracking-tighter uppercase text-white group-hover:text-emerald-400 transition-colors">IoT</span>
+                        <span className="text-[0.6rem] font-bold uppercase tracking-widest text-emerald-500/60 opacity-0 group-hover:opacity-100 transition-opacity">Vitasense</span>
+                      </div>
+                    </motion.div>
+
+                    <Plus className="text-white/20" size={24} strokeWidth={1} />
+
+                    {/* AI */}
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 }}
+                      className="flex flex-col items-center gap-4 group"
+                    >
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-blue-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(59,130,246,0.15)] border border-blue-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(59,130,246,0.3)] transition-all duration-500">
+                        <Brain size={40} strokeWidth={1.5} className="md:size-12" />
+                      </div>
+                      <div className="text-center">
+                        <span className="block font-black text-xl md:text-2xl tracking-tighter uppercase text-white group-hover:text-blue-400 transition-colors">AI</span>
+                        <span className="text-[0.6rem] font-bold uppercase tracking-widest text-blue-500/60 opacity-0 group-hover:opacity-100 transition-opacity">VitaAI</span>
+                      </div>
+                    </motion.div>
+
+                    {/* Desktop Plus */}
+                    <Plus className="hidden sm:block text-white/20" size={24} strokeWidth={1} />
+
+                    {/* Desktop Blockchain */}
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 }}
+                      className="hidden sm:flex flex-col items-center gap-4 group"
+                    >
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500">
+                        <Link size={40} strokeWidth={1.5} className="md:size-12" />
+                      </div>
+                      <div className="text-center">
+                        <span className="block font-black text-xl md:text-2xl tracking-tighter uppercase text-white group-hover:text-violet-400 transition-colors">Blockchain</span>
+                        <span className="text-[0.6rem] font-bold uppercase tracking-widest text-violet-500/60 opacity-0 group-hover:opacity-100 transition-opacity">Vitachain</span>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Mobile Mobile Blockchain Row */}
+                  <div className="sm:hidden flex flex-col items-center gap-6">
+                    <Plus className="text-white/20" size={24} strokeWidth={1} />
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 }}
+                      className="flex flex-col items-center gap-4 group"
+                    >
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-violet-500 flex items-center justify-center text-white shadow-[0_0_40px_rgba(139,92,246,0.15)] border border-violet-400/30 group-hover:scale-110 group-hover:shadow-[0_0_50px_rgba(139,92,246,0.3)] transition-all duration-500">
+                        <Link size={40} strokeWidth={1.5} className="md:size-12" />
+                      </div>
+                      <div className="text-center">
+                        <span className="block font-black text-xl md:text-2xl tracking-tighter uppercase text-white group-hover:text-violet-400 transition-colors">Blockchain</span>
+                        <span className="text-[0.6rem] font-bold uppercase tracking-widest text-violet-500/60 opacity-0 group-hover:opacity-100 transition-opacity">Vitachain</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Tagline */}
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-center mt-8 md:mt-10"
+                >
+                  <p className="text-white/80 font-bold text-lg md:text-xl tracking-tight italic">
+                    Not three separate tools. <span className="text-primary not-italic">One connected system</span>{' '}
+                    that captures your health, understands it, and protects it — every single day.
+                  </p>
+                </motion.div>
+              </div>
+            </StarBorder>
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );
