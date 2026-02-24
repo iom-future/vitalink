@@ -63,7 +63,7 @@ h1, h2, h3, h4, h5, h6 {
   .glass-card:hover {
     border-color: rgba(255, 255, 255, 0.15);
     background: rgba(255, 255, 255, 0.05);
-    transform: translateY(-4px);
+    
   }
 
   .glass-card-light {
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .glass-card-light:hover {
     box-shadow: var(--shadow-clinical-hover);
-    transform: translateY(-6px);
+    
   }
 
   .btn-primary {
@@ -180,6 +180,15 @@ h1, h2, h3, h4, h5, h6 {
 .mask-fade {
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @theme inline {

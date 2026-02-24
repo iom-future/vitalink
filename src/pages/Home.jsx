@@ -5,6 +5,7 @@ import Problem from '../components/Problem';
 import HowItWorks from '../components/HowItWorks';
 import Features from '../components/Features';
 import SocialProof from '../components/SocialProof';
+import Team from '../components/Team';
 import CtaSection from '../components/CtaSection';
 
 export default function Home({ bannerVisible }) {
@@ -16,6 +17,7 @@ export default function Home({ bannerVisible }) {
       <HowItWorks />
       <Features />
       <SocialProof />
+      <Team />
       <CtaSection />
     </div>
   );
