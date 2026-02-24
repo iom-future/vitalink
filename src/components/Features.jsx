@@ -1,49 +1,64 @@
 import React, { useRef } from 'react';
-import { Activity, Zap, Shield, Database, LayoutDashboard, LineChart } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+
+import Feature1 from '../assets/features/feature1.png';
+import Feature2 from '../assets/features/feature2.png';
+import Feature3 from '../assets/features/feature3.png';
+import Feature4 from '../assets/features/feature4.png';
+import Feature5 from '../assets/features/feature5.png';
+import Feature6 from '../assets/features/feature6.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FEATURES = [
   {
-    icon: <Activity />,
     title: 'Continuous 24/7 Biometric Monitoring',
     description: 'Heart rate, blood glucose, blood pressure, SpO2, ECG, sleep quality, and activity levels — all streaming live from FDA-ready wearable devices. No gaps. No estimates. Just continuous, unbroken health intelligence.',
+    image: Feature1,
   },
   {
-    icon: <Zap />,
     title: 'AI Early Warning Alerts',
     description: 'Our models detect clinical deterioration patterns up to 72 hours before a critical health event. Clinicians receive instant push alerts ranked by severity — with a patient summary, trend data, and a suggested response pathway.',
+    image: Feature2,
   },
   {
-    icon: <Shield />,
     title: 'Patient-Owned Blockchain Health Wallet',
     description: 'Every piece of health data belongs to the patient — stored in an encrypted, immutable blockchain wallet. Patients grant and revoke clinical access instantly, and earn tokenized rewards when their anonymized data contributes to research.',
+    image: Feature3,
   },
   {
-    icon: <Database />,
     title: 'FHIR-Compliant EHR Integration',
     description: 'Vitalink connects to Epic, Cerner, Athenahealth, and all major EHR systems via FHIR APIs — with zero disruption to existing clinical workflows. Health data flows in, and action flows out.',
+    image: Feature4,
   },
   {
-    icon: <LayoutDashboard />,
     title: 'Multi-Patient Clinical Dashboard',
     description: 'Care teams monitor entire patient populations from one screen. AI-prioritized alert queues, live vitals, risk trend graphs, and one-click patient record access — designed for the speed of real clinical care.',
+    image: Feature5,
   },
   {
-    icon: <LineChart />,
     title: 'Anonymized Data Marketplace',
     description: 'Healthcare institutions and pharmaceutical researchers access aggregated, anonymized patient data through a secure, consent-governed marketplace. Patients earn. Researchers discover. Everyone benefits.',
+    image: Feature6,
   },
+];
+
+// Bento grid row configs
+// Row 1: 65% / 35%
+// Row 2: 50% / 50%
+// Row 3: 35% / 65%
+const ROWS = [
+  { cols: 'md:grid-cols-[65fr_35fr]', features: [0, 1] },
+  { cols: 'md:grid-cols-2', features: [2, 3] },
+  { cols: 'md:grid-cols-[35fr_65fr]', features: [4, 5] },
 ];
 
 export default function Features() {
   const containerRef = useRef(null);
 
   useGSAP(() => {
-    // Header Animation
     gsap.from(".features-header", {
       y: 30,
       opacity: 0,
@@ -57,19 +72,13 @@ export default function Features() {
       }
     });
 
-    // Feature Cards Animation (Unified Right Entry + Group Trigger)
     gsap.fromTo(".feature-card",
+      { y: 40, opacity: 0 },
       {
-        x: 60,
-        y: 20,
-        opacity: 0
-      },
-      {
-        x: 0,
         y: 0,
         opacity: 1,
         duration: 1,
-        stagger: 0.15,
+        stagger: 0.12,
         ease: "back.out(1.2)",
         scrollTrigger: {
           trigger: ".feature-card",
@@ -94,30 +103,39 @@ export default function Features() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {FEATURES.map((feature, index) => (
-            <div
-            key={feature.title}
-            className="feature-card opacity-0 p-8 md:p-10 rounded-2xl relative border-4 border-white bg-[#F5F5F7] bg-[radial-gradient(100%_50%_at_50%_0%,rgba(4,78,71,0.08)_0,rgba(4,78,71,0)_50%,rgba(4,78,71,0)_100%)] hover:border-primary/10 transition-all duration-500 hover:shadow-clinical-hover group overflow-hidden h-full"
-          >
-              {/* Background Icon Effect */}
-              <div className="absolute -bottom-10 -right-10 text-primary opacity-[0.05] group-hover:opacity-[0.08] group-hover:scale-110 group-hover:-rotate-12 transition-all duration-700 pointer-events-none" aria-hidden="true">
-                {React.cloneElement(feature.icon, { size: 240, strokeWidth: 1.5 })}
-              </div>
+        {/* Bento Grid: per-row grids for precise column ratios */}
+        <div className="flex flex-col gap-5">
+          {ROWS.map((row, rowIndex) => (
+            <div key={rowIndex} className={`grid grid-cols-1 ${row.cols} gap-5`}>
+              {row.features.map((featureIndex) => {
+                const feature = FEATURES[featureIndex];
+                return (
+                  <div
+                    key={feature.title}
+                    className="feature-card opacity-0 relative rounded-3xl overflow-hidden group h-[320px] md:h-[380px]"
+                  >
+                    {/* Background Image */}
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
 
-              <div className="relative z-10 h-full flex flex-col">
-                <h3 className="text-2xl md:text-3xl font-black mb-6 tracking-tight text-secondary group-hover:text-primary transition-colors leading-[1.1]">
-                  {feature.title}
-                </h3>
-                <p className="text-text-muted text-base md:text-lg leading-relaxed mb-8">
-                  {feature.description}
-                </p>
-                <div className="mt-auto">
-                  <a href="#how-it-works" className="inline-flex items-center gap-2 text-sm font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity" aria-label={`See how ${feature.title} works`}>
-                    See how it works <Zap size={14} className="fill-current" aria-hidden="true" />
-                  </a>
-                </div>
-              </div>
+                    {/* Gradient Overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent" />
+
+                    {/* Text Content - Positioned at bottom */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 z-10">
+                      <h3 className="text-xl md:text-2xl font-black mb-3 tracking-tight text-white leading-[1.1]">
+                        {feature.title}
+                      </h3>
+                      <p className="text-white/60 text-sm leading-relaxed ">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>
