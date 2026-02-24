@@ -1,5 +1,5 @@
 import React, { useState, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 
 // Lazy load page components
@@ -22,7 +22,7 @@ function App() {
   const [bannerVisible, setBannerVisible] = useState(true);
 
   return (
-    <HashRouter basename="/vitalink">
+    <HashRouter>
       <Suspense fallback={<PageLoader />}>
         <Routes>
           <Route path="/" element={<Layout bannerVisible={bannerVisible} onBannerClose={() => setBannerVisible(false)} />}>
