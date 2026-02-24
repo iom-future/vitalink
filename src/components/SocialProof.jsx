@@ -165,7 +165,7 @@ export default function SocialProof() {
               </p>
               <div className="flex items-center gap-4">
                 <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/10 flex-shrink-0">
-                  <img src={t.image} alt={t.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover  hover:shadow-md transition-all duration-300" />
                 </div>
                 <div className="flex flex-col">
                   <span className="font-semibold text-secondary text-lg leading-tight">{t.name}</span>
