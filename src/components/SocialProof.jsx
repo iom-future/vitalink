@@ -5,6 +5,9 @@ import { Counter } from './Counter';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import Testimonial1 from '../assets/testimonial/test1.jpg';
+import Testimonial2 from '../assets/testimonial/test2.jpg';
+import Testimonial3 from '../assets/testimonial/test3.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,18 +23,21 @@ const TESTIMONIALS = [
     name: 'Dr. Anita Sharma',
     role: 'Interventional Cardiologist',
     org: 'Mount Sinai Affiliate',
+    image: Testimonial1,
     quote: 'I have been practising cardiology for 22 years. Vitalink is the first tool that has genuinely changed the way I practice. I intercepted a cardiac event in a patient 58 hours before it would have landed them in the ER. That is not a feature. That is a life.',
   },
   {
     name: 'Marcus T.',
     role: 'Patient',
     org: 'Chronic Disease Management Program',
+    image: Testimonial2,
     quote: "I have type 1 diabetes. For the first time in my life I feel like someone is watching over me — not a machine, not an algorithm, but a system that actually understands my body and gets the right information to my care team before I even know something is wrong.",
   },
   {
     name: 'Dr. Rachel Okonkwo',
     role: 'Chief Medical Officer',
     org: 'Regional Health Network',
+    image: Testimonial3,
     quote: 'The blockchain health wallet was the feature that sold our hospital board. Our patients asked for data ownership for years. Vitalink delivered it — and the EHR integration made the rollout seamless. We were live in three weeks.',
   },
 ];
@@ -157,10 +163,15 @@ export default function SocialProof() {
               <p className="text-secondary text-xl font-black leading-relaxed mb-10 flex-grow tracking-tight">
                 "{t.quote}"
               </p>
-              <div className="flex flex-col">
-                <span className="font-semibold text-secondary text-xl">{t.name}</span>
-                <span className="text-primary font-bold text-sm tracking-tight mb-1">{t.role}</span>
-                <span className="text-text-muted text-xs font-bold uppercase tracking-widest leading-none">{t.org}</span>
+              <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-primary/10 flex-shrink-0">
+                  <img src={t.image} alt={t.name} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-300" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="font-semibold text-secondary text-lg leading-tight">{t.name}</span>
+                  <span className="text-primary font-bold text-xs tracking-tight">{t.role}</span>
+                  <span className="text-text-muted text-[0.65rem] font-bold uppercase tracking-widest leading-none mt-1">{t.org}</span>
+                </div>
               </div>
             </div>
           ))}
