@@ -13,7 +13,7 @@ const TEAM = [
     bio: 'A former interventional cardiologist at Johns Hopkins with 14 years of front-line clinical excellence. Founded Vitalink after witnessing the devastating gaps in continuous patient visibility. Now driving the clinical vision that bridges reactive medicine with proactive, life-saving intelligence.'
   },
   {
-    name: 'William Mehta',
+    name: 'Isaac William',
     role: 'Co-Founder & CTO',
     image: Person4,
     bio: '15 years building distributed systems at Google Health and then DeepMind. Architect of VitaAI\'s predictive engine and the VitaChain blockchain infrastructure. Holds 7 patents in real-time biometric data processing.'
@@ -25,7 +25,7 @@ const TEAM = [
     bio: 'Board-certified endocrinologist and former clinical research lead at Mayo Clinic. Designed Vitalink\'s chronic disease monitoring protocols for diabetes, hypertension, and heart failure. Ensures alert pathways are clinically validated.'
   },
   {
-    name: 'Marcus Webb',
+    name: 'Gabriel Webb',
     role: 'Chief Blockchain & Data Officer',
     image: Person3,
     bio: 'Ex-Ethereum Foundation contributor and former data privacy lead at a major EHR company. Built the VitaChain patient-owned wallet system and anonymized data marketplace. Champion of patient data rights.'
@@ -60,7 +60,7 @@ export default function Team() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* CEO / Featured Card */}
           <motion.div
-            className="md:col-span-2 flex flex-col md:flex-row bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 group  h-[450px]"
+            className="md:col-span-2 flex flex-col md:flex-row bg-white/5 rounded-[2.5rem] overflow-hidden border border-white/10 group  h-auto"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -81,7 +81,7 @@ export default function Team() {
                 <span className="text-accent font-bold text-xs uppercase tracking-[0.2em]">{TEAM[0].role}</span>
               </div>
               <h3 className="text-white text-3xl md:text-4xl font-black mb-6 tracking-tight">{TEAM[0].name}</h3>
-              <p className="text-white/80 text-lg leading-relaxed max-w-xl">
+              <p className="text-white/80 md:text-lg text-base  leading-relaxed max-w-xl">
                 {TEAM[0].bio}
               </p>
             </div>
@@ -110,7 +110,7 @@ export default function Team() {
               <div className="px-1 flex-grow">
                 <h4 className="text-white text-2xl font-bold tracking-tight mb-2">{member.name}</h4>
                 <p className="text-accent text-[0.65rem] font-bold uppercase tracking-[0.2em] mb-4">{member.role}</p>
-                <p className="text-white/70 text-sm leading-relaxed">
+                <p className="text-white/70 md:text-base text-sm leading-relaxed">
                   {member.bio}
                 </p>
               </div>
