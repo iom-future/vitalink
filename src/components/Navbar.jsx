@@ -3,6 +3,9 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import Banner from './Banner';
 
+import logo from '../assets/v_logo.png';
+
+
 const NAV_LINKS = [
   { label: 'How It Works', href: '/how-it-works' },
   { label: 'For Patients', href: '/for-patients' },
@@ -49,7 +52,7 @@ function Navbar({ bannerVisible, onBannerClose }) {
         <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-between ">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/vitalink_logo.png" alt="Vitalink" className="h-10 w-auto" />
+            <img src={logo} alt="Vitalink" className="h-10 rounded-full w-auto" />
           </Link>
 
           {/* Desktop Nav Links */}
@@ -109,7 +112,7 @@ function Navbar({ bannerVisible, onBannerClose }) {
           {/* Header inside overlay to have a close button */}
           <div className="flex items-center justify-between px-4 py-4 border-b border-secondary/5">
             <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-              <img src="/vitalink_logo.png" alt="Vitalink" className="h-8 w-auto" />
+              <img src={logo} alt="Vitalink" className="h-8 w-auto" />
             </Link>
             <button
               onClick={() => setMobileOpen(false)}

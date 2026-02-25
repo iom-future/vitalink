@@ -49,7 +49,7 @@ export default function Hero({ bannerVisible }) {
   }, { scope: containerRef });
 
   return (
-    <section id="hero" aria-label="Hero" ref={containerRef} className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[170px]' : 'pt-[80px]'}`}>
+    <section id="hero" aria-label="Hero" ref={containerRef} className={`relative min-h-[90vh] flex flex-col justify-center overflow-hidden pb-6 bg-teal-light transition-all duration-500 ${bannerVisible ? 'pt-[180px]' : 'pt-[100px] md:pt-[120px]'}`}>
       <div className="absolute inset-0 pointer-events-none opacity-60" aria-hidden="true">
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white/90 pointer-events-none" />
       </div>

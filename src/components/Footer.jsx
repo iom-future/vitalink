@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Twitter, Linkedin, Mail, MapPin, Youtube, Microscope, Phone } from 'lucide-react';
+import logo from '../assets/v_logo.png';
 
 const FOOTER_LINKS = [
   {
@@ -30,7 +31,7 @@ function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2">
             <a href="#" className="mb-8 block">
-              <img src="/vitalink_logo.png" alt="Vitalink" className="h-12 w-auto brightness-0 invert" />
+              <img src={logo} alt="Vitalink" className="h-12 w-auto" />
             </a>
             <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
               Closing the gap between your body and your care team — every second of every day.
