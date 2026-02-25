@@ -1,1 +1,0 @@
-import{n as e,t}from"./jsx-runtime-HOC9jVL_.js";import{t as n}from"./HowItWorks-BP_u0IKm.js";import"./src-DDU3tzHI.js";e();var r=t();function i(){return(0,r.jsx)(`div`,{className:`pt-24 md:pt-32`,children:(0,r.jsx)(n,{})})}export{i as default};
