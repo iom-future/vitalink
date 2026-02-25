@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import { Link } from 'react-router-dom';
 import { Twitter, Linkedin, Mail, MapPin, Youtube, Microscope, Phone } from 'lucide-react';
 import logo from '../assets/v_logo.png';
 
@@ -30,9 +31,10 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <a href="#" className="mb-8 block">
-              <img src={logo} alt="Vitalink" className="h-12 w-auto" />
-            </a>
+            <Link to="/" className="mb-8 flex items-center gap-2.5">
+              <img src={logo} alt="" className="h-12 w-auto" />
+              <span className="text-2xl font-heading font-bold tracking-tighter text-white uppercase! ml-1!">vitalink</span>
+            </Link>
             <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
               Closing the gap between your body and your care team — every second of every day.
             </p>

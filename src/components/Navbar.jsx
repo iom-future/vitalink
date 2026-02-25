@@ -51,8 +51,9 @@ function Navbar({ bannerVisible, onBannerClose }) {
       >
         <div className="max-w-[1200px] mx-auto px-4 flex items-center justify-between ">
           {/* Logo */}
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Vitalink" className="h-10 rounded-full w-auto" />
+          <Link to="/" className="flex items-center gap-2">
+            <img src={logo} alt="" className="h-10 rounded-full w-auto" />
+            <span className="text-xl font-heading font-bold tracking-tighter text-secondary">vitalink</span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -112,7 +113,8 @@ function Navbar({ bannerVisible, onBannerClose }) {
           {/* Header inside overlay to have a close button */}
           <div className="flex items-center justify-between px-4 py-4 border-b border-secondary/5">
             <Link to="/" onClick={() => setMobileOpen(false)} className="flex items-center gap-2">
-              <img src={logo} alt="Vitalink" className="h-8 w-auto" />
+              <img src={logo} alt="" className="h-8 w-auto" />
+              <span className="text-lg font-heading font-bold tracking-tighter text-secondary">vitalink</span>
             </Link>
             <button
               onClick={() => setMobileOpen(false)}
