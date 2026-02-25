@@ -1,0 +1,1 @@
+import{n as e,t}from"./jsx-runtime-HOC9jVL_.js";import{t as n}from"./Problem-BoBPn42-.js";import"./src-DDU3tzHI.js";import"./Counter-Bdx-Hbvg.js";import{t as r}from"./Stats-CmfOWU59.js";e();var i=t();function a(){return(0,i.jsxs)(`div`,{className:`pt-24 md:pt-32`,children:[(0,i.jsx)(n,{}),(0,i.jsx)(r,{})]})}export{a as default};
