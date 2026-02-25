@@ -29,8 +29,8 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-16 mb-24">
           {/* Brand Info */}
           <div className="lg:col-span-2">
-            <a href="#" className="text-3xl font-black tracking-tighter text-primary mb-8 block">
-              VITA<span className="text-white">LINK</span>
+            <a href="#" className="mb-8 block">
+              <img src="/vitalink_logo.png" alt="Vitalink" className="h-12 w-auto brightness-0 invert" />
             </a>
             <p className="text-white/40 text-lg leading-relaxed mb-10 max-w-[340px] font-medium">
               Closing the gap between your body and your care team — every second of every day.
